@@ -1,0 +1,10 @@
+.navigation {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 80px 416px;
+}
+
+/* .main {
+  text-align: left;
+} */
