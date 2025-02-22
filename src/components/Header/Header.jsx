@@ -1,4 +1,5 @@
 import Navigation from "../Navigation/Navigation";
+import SearchForm from "../SearchForm/SearchForm";
 import "./Header.css";
 
 function Header() {
@@ -13,6 +14,9 @@ function Header() {
       </div>
       <div className="navigation__container">
         <Navigation />
+      </div>
+      <div className="search-form__container">
+        <SearchForm />
       </div>
     </header>
   );
