@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SearchForm.css";
 
 function SearchForm() {
   const [searchItem, setSearchItem] = useState("");
@@ -9,7 +10,7 @@ function SearchForm() {
   };
 
   return (
-    <div>
+    <div className="search">
       <input
         type="text"
         value={searchItem}
