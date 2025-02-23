@@ -1,0 +1,34 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 80px 104px 26px;
+}
+
+.footer__copyright {
+  margin: 0;
+}
+
+.footer__links {
+  display: flex;
+  gap: 40px;
+}
+
+.footer__home {
+  margin: 0;
+}
+
+.footer__tripleten {
+  margin: 0;
+}
+
+.footer__links-social {
+  display: flex;
+}
+
+.footer__temp1 {
+  margin: 0;
+}
+
+.footer__temp2 {
+  margin: 0;
+}
