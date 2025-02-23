@@ -1,4 +1,5 @@
 import "./Footer.css";
+import githubIcon from "../../assets/icons/github.svg";
 
 function Footer() {
   return (
@@ -6,11 +7,12 @@ function Footer() {
       <p className="footer__copyright"> © 2025 Supersite, Powered by API</p>
       <div className="footer__links">
         <p className="footer__home">Home</p>
-        <p className="footer__tripleten">TripleTen</p>
-        <div className="footer__links-social">
-          <p className="footer__temp1">pic 1</p>
-          <p className="footer__temp2">pic 2</p>
-        </div>
+        <a href="https://tripleten.com/" className="footer__social-link">
+          <p className="footer__tripleten">TripleTen</p>
+        </a>
+        <a href="https://github.com/DShort13">
+          <img className="footer__github" src={githubIcon} alt="GitHub link" />
+        </a>
       </div>
     </footer>
   );
