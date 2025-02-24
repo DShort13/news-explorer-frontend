@@ -5,8 +5,6 @@ import About from "../About/About";
 import Footer from "../Footer/Footer";
 
 function App() {
-  // const [count, setCount] = useState(0);
-
   return (
     <div className="page">
       <div className="page__content">
