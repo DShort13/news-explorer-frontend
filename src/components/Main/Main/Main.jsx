@@ -1,3 +1,4 @@
+import About from "../../About/About";
 import { defaultNewsArticles } from "../../../utils/defaultNewsArticles";
 
 function Main() {
@@ -15,6 +16,7 @@ function Main() {
           })}
         </ul>
       </section>
+      <About />
     </main>
   );
 }
