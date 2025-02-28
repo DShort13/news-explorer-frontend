@@ -9,6 +9,7 @@ function Header() {
         <p className="header__logo">NewsExplorer</p>
         <div className="header__user-container">
           <p className="header__home">Home</p>
+          <p className="header__saved">Saved articles</p>
           <button className="header__signin">Sign in</button>
         </div>
       </div>

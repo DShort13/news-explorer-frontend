@@ -22,6 +22,10 @@
   margin: 0;
 }
 
+.header__saved {
+  margin: 0;
+}
+
 .header__signin {
   padding: 12px 20px;
   background: none;
