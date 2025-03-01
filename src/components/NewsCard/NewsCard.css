@@ -1,9 +1,14 @@
+.articles__header {
+  margin: 0;
+  padding: 80px 104px 64px;
+}
+
 .articles__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0;
-  padding: 0;
+  padding: 0 104px;
 }
 
 .articles {

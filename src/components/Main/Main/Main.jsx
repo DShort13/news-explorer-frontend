@@ -6,7 +6,6 @@ function Main({ defaultNewsArticles }) {
   return (
     <main>
       <Header />
-      <h2>Search results</h2>
       <NewsCardList defaultNewsArticles={defaultNewsArticles} />
       <About />
     </main>
