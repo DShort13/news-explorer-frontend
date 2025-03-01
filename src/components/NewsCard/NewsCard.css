@@ -15,9 +15,32 @@
   width: 400px;
   height: 576px;
   list-style-type: none;
+  position: relative;
 }
 
 .article__image {
   width: 400px;
   height: 272px;
+}
+
+.article__save-container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.article__save-btn {
+  background-image: url(../../assets/save.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+}
+
+.article__save-btn:hover {
+  background-image: url(../../assets/save-hover.svg);
+  cursor: pointer;
 }

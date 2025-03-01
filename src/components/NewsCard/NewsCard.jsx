@@ -8,14 +8,19 @@ function NewsCard({ item }) {
 
   return (
     <li className="articles">
-      <div>
-        <img className="article__image" src={item.urlToImage} alt="" />
-        <p>{dateFormat.toLocaleDateString("en-us", options)}</p>
-        <p>{item.source.name}</p>
-        <p>{item.title}</p>
-        <p>{item.description}</p>
-        <p>{item.source.name}</p>
+      <img
+        className="article__image"
+        src={item.urlToImage}
+        alt="News article"
+      />
+      <div className="article__save-container">
+        <button type="button" className="article__save-btn" />
       </div>
+      <p>{dateFormat.toLocaleDateString("en-us", options)}</p>
+      <p>{item.source.name}</p>
+      <p>{item.title}</p>
+      <p>{item.description}</p>
+      <p>{item.source.name}</p>
     </li>
   );
 }
