@@ -1,6 +1,6 @@
 .articles__header {
   margin: 0;
-  padding: 80px 104px 64px;
+  padding-bottom: 64px;
 }
 
 .articles__list {
@@ -8,7 +8,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0;
-  padding: 0 104px;
+  padding: 0;
 }
 
 .articles {
@@ -17,7 +17,7 @@
   list-style-type: none;
 }
 
-.articles__image {
+.article__image {
   width: 400px;
   height: 272px;
 }

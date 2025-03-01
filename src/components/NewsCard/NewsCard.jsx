@@ -9,7 +9,7 @@ function NewsCard({ item }) {
   return (
     <li className="articles">
       <div>
-        <img className="articles__image" src={item.urlToImage} alt="" />
+        <img className="article__image" src={item.urlToImage} alt="" />
         <p>{dateFormat.toLocaleDateString("en-us", options)}</p>
         <p>{item.source.name}</p>
         <p>{item.title}</p>
