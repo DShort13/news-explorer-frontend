@@ -1,4 +1,24 @@
-.search {
+.search__container {
   display: flex;
   justify-content: center;
+  padding: 80px 0;
+}
+
+.search__text {
+}
+
+.search__title {
+  margin: 0 auto;
+  padding-bottom: 32px;
+}
+
+.search__instructions {
+  margin: 0 auto;
+  padding-bottom: 88px;
+}
+
+.search__bar {
+  width: 608px;
+  height: 64px;
+  padding: 0;
 }

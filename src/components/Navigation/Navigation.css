@@ -1,7 +1,35 @@
 .navigation {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-  padding: 80px 0;
+  padding: 30px 104px 26px;
+  border-bottom: solid;
+  border-color: #c4c4c4;
+}
+
+.navigation__logo {
+  margin: 0;
+}
+
+.navigation__user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 42px;
+}
+
+.navigation__home {
+  margin: 0;
+}
+
+.navigation__saved {
+  margin: 0;
+}
+
+.navigation__signin {
+  padding: 12px 20px;
+  background: none;
+  border-radius: 100px;
+  width: 176px;
+  height: 48px;
 }

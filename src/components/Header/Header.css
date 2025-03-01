@@ -1,10 +1,6 @@
-.header {
+.header__container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 104px 26px;
-  border-bottom: solid;
-  border-color: #c4c4c4;
+  flex-direction: column;
 }
 
 .header__logo {

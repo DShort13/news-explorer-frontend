@@ -1,7 +1,6 @@
 import NewsCard from "../NewsCard/NewsCard";
-import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
 
-function NewsCardList() {
+function NewsCardList({ defaultNewsArticles }) {
   return (
     <ul className="articles__list">
       {defaultNewsArticles.map((item) => {
