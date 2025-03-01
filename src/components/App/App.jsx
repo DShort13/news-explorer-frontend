@@ -14,7 +14,10 @@ function App() {
             path="/"
             element={<Main defaultNewsArticles={defaultNewsArticles} />}
           />
-          <Route path="/saved-news" element={<SavedNews />} />
+          <Route
+            path="/saved-news"
+            element={<SavedNews defaultNewsArticles={defaultNewsArticles} />}
+          />
         </Routes>
         <Footer />
       </div>

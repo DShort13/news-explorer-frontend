@@ -2,7 +2,7 @@ import Navigation from "../Navigation/Navigation";
 import SavedText from "../SavedText/SavedText";
 import "./SavedNews.css";
 
-function SavedNews() {
+function SavedNews({ defaultNewsArticles }) {
   return (
     <div>
       <Navigation />
@@ -11,7 +11,7 @@ function SavedNews() {
         <p>Dion, you have 5 saved articles</p>
         <p>By keywords</p>
       </section>
-      <SavedText />
+      <SavedText defaultNewsArticles={defaultNewsArticles} />
     </div>
   );
 }

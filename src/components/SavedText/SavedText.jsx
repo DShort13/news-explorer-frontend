@@ -1,9 +1,15 @@
+import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
+import NewsCard from "../NewsCard/NewsCard";
 import "./SavedText.css";
 
 function SavedText() {
   return (
     <div className="saved-text__container">
-      <h2 className="saved-text__title">SavedNews</h2>
+      <ul className="saved-text__articles">
+        {defaultNewsArticles.map((item) => {
+          return <NewsCard key={item._id} item={item} />;
+        })}
+      </ul>
     </div>
   );
 }

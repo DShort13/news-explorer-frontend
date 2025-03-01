@@ -1,3 +1,10 @@
 .saved-text__container {
   padding: 0 104px;
 }
+
+.saved-text__articles {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0;
+}
