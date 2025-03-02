@@ -14,6 +14,9 @@ function LoginModal({ isOpen, onClose }) {
       <button type="submit" className="modal__submit">
         Sign in
       </button>
+      <button type="button" className="modal__alternate-text">
+        or <span className="modal__alternate-link">Sign up</span>
+      </button>
     </ModalWithForm>
   );
 }
