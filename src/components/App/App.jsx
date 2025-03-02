@@ -1,12 +1,21 @@
 import { Routes, Route } from "react-router-dom";
+
+import { useState } from "react";
+
+import "./App.css";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import LoginModal from "../LoginModal/LoginModal";
 import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
-import "./App.css";
 
 function App() {
+  const [activeModal, setActiveModal] = useState("");
+
+  const handleLoginmodal = () => {
+    setActiveModal("login");
+  };
+
   return (
     <div className="page">
       <div className="page__content">
@@ -23,7 +32,7 @@ function App() {
         <Footer />
       </div>
       <div>
-        <ModalWithForm />
+        <LoginModal isOpen={activeModal === "login"} />
       </div>
     </div>
   );
