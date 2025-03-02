@@ -8,12 +8,17 @@ import Main from "../Main/Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import LoginModal from "../LoginModal/LoginModal";
 import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
 
   const handleLoginModal = () => {
     setActiveModal("login");
+  };
+
+  const handleRegisterModal = () => {
+    setActiveModal("register");
   };
 
   const closeActiveModal = () => {
@@ -44,6 +49,12 @@ function App() {
         <LoginModal
           isOpen={activeModal === "login"}
           onClose={closeActiveModal}
+          handleRegisterModal={handleRegisterModal}
+        />
+        <RegisterModal
+          isOpen={activeModal === "register"}
+          onClose={closeActiveModal}
+          handleLoginModal={handleLoginModal}
         />
       </div>
     </div>
