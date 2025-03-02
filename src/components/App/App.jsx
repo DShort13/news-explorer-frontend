@@ -12,8 +12,12 @@ import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
 function App() {
   const [activeModal, setActiveModal] = useState("");
 
-  const handleLoginmodal = () => {
+  const handleLoginModal = () => {
     setActiveModal("login");
+  };
+
+  const closeActiveModal = () => {
+    setActiveModal("");
   };
 
   return (
@@ -22,7 +26,12 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Main defaultNewsArticles={defaultNewsArticles} />}
+            element={
+              <Main
+                defaultNewsArticles={defaultNewsArticles}
+                handleLoginModal={handleLoginModal}
+              />
+            }
           />
           <Route
             path="/saved-news"
@@ -32,7 +41,10 @@ function App() {
         <Footer />
       </div>
       <div>
-        <LoginModal isOpen={activeModal === "login"} />
+        <LoginModal
+          isOpen={activeModal === "login"}
+          onClose={closeActiveModal}
+        />
       </div>
     </div>
   );
