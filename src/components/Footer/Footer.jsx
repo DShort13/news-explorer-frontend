@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 import githubIcon from "../../assets/icons/github.svg";
 
@@ -6,7 +7,9 @@ function Footer() {
     <footer className="footer">
       <p className="footer__copyright"> © 2025 Supersite, Powered by API</p>
       <div className="footer__links">
-        <p className="footer__home">Home</p>
+        <Link to="/" className="navigation__links">
+          <p className="footer__home">Home</p>
+        </Link>
         <a href="https://tripleten.com/" className="footer__social-link">
           <p className="footer__tripleten">TripleTen</p>
         </a>
