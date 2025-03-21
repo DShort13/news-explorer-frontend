@@ -65,15 +65,16 @@ function LoginModal({ isOpen, onClose, handleRegisterModal }) {
       <button
         type="submit"
         className={`modal__submit ${!isValid ? "modal__submit-disabled" : ""}`}
-        disabled={`${!isValid ? "disabled" : ""}`}
+        // disabled={`${!isValid ? "disabled" : ""}`}
       >
         Sign in
       </button>
-      <button type="button" className="modal__alternate-text">
-        or{" "}
-        <span onClick={handleRegisterModal} className="modal__alternate-link">
-          Sign up
-        </span>
+      <button
+        type="button"
+        className="modal__alternate-text"
+        onClick={handleRegisterModal}
+      >
+        or <span className="modal__alternate-link">Sign up</span>
       </button>
     </ModalWithForm>
   );

@@ -1,28 +1,72 @@
+import { useEffect } from "react";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function RegisterModal({ isOpen, onClose, handleLoginModal }) {
+  const { values, errors, handleChange, isValid, resetForm } =
+    useFormAndValidation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen]);
+
   return (
     <ModalWithForm title="Sign up" isOpen={isOpen} onClose={onClose}>
       <label for="email" className="modal__label">
         Email
-        <input type="text" id="email" className="modal__input" />
+        <input
+          name="email"
+          type="text"
+          id="email-register"
+          className="modal__input"
+          value={values.email}
+          required
+          placeholder="Enter email"
+        />
       </label>
       <label for="password" className="modal__label">
         Password
-        <input type="text" id="password" className="modal__input" />
+        <input
+          name="password"
+          type="text"
+          id="password-register"
+          className="modal__input"
+          value={values.password}
+          required
+          placeholder="Enter password"
+        />
       </label>
       <label for="username" className="modal__label">
         Username
-        <input type="text" />
+        <input
+          name="username"
+          type="text"
+          id="username"
+          className="modal__username"
+          value={values.username}
+          required
+          placeholder="Enter your username"
+        />
       </label>
-      <button type="submit" className="modal__submit">
+      <button
+        type="submit"
+        className={`modal__submit ${!isValid ? "modal__submit-disabled" : ""}`}
+        disabled={`${!isValid ? "disabled" : ""}`}
+      >
         Sign up
       </button>
-      <button type="button" className="modal__alternate-text">
-        or{" "}
-        <span onClick={handleLoginModal} className="modal__alternate-link">
-          Sign in
-        </span>
+      <button
+        type="button"
+        className="modal__alternate-text"
+        onClick={handleLoginModal}
+      >
+        or <span className="modal__alternate-link">Sign in</span>
       </button>
     </ModalWithForm>
   );
