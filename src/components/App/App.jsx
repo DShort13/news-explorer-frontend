@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 import Footer from "../Footer/Footer";
@@ -24,6 +24,15 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
+
+  useEffect(() => {
+    if (!activeModal) return;
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") closeActiveModal();
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => document.removeEventListener("keydown", handleEscClose);
+  }, [activeModal]);
 
   return (
     <div className="page">
