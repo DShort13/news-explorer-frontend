@@ -58,6 +58,10 @@
   outline: none;
 }
 
+.modal__error {
+  color: #ff0000;
+}
+
 .modal__submit {
   margin: 8px 0 16px;
   width: 358px;
@@ -65,4 +69,11 @@
   border-radius: 100px;
   border: none;
   padding: 0;
+  color: #fff;
+  background-color: #2f71e5;
+}
+
+.modal__submit-disabled {
+  color: #b6bcbf;
+  background-color: #e6e8eb;
 }

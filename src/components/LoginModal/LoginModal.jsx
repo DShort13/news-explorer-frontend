@@ -1,17 +1,72 @@
+import { useEffect } from "react";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function LoginModal({ isOpen, onClose, handleRegisterModal }) {
+  const { values, errors, handleChange, isValid, resetForm } =
+    useFormAndValidation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen]);
+
   return (
-    <ModalWithForm title="Sign in" isOpen={isOpen} onClose={onClose}>
+    <ModalWithForm
+      title="Sign in"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
       <label for="email" className="modal__label">
         Email
-        <input type="text" id="email" className="modal__input" />
+        <input
+          name="email"
+          type="email"
+          id="email"
+          className="modal__input"
+          value={values.email}
+          onChange={handleChange}
+          required
+          placeholder="Enter email"
+        />
       </label>
+      {errors?.email && (
+        <>
+          <span className="modal__error" id="email-input-error">
+            {errors?.email}
+          </span>
+        </>
+      )}
       <label for="password" className="modal__label">
         Password
-        <input type="text" id="password" className="modal__input" />
+        <input
+          name="password"
+          type="password"
+          id="password"
+          className="modal__input"
+          value={values.password}
+          onChange={handleChange}
+          required
+          minLength="2"
+          placeholder="Enter password"
+        />
       </label>
-      <button type="submit" className="modal__submit">
+      {errors.password && (
+        <span className="modal__error" id="password-input-error">
+          {errors.password}
+        </span>
+      )}
+      <button
+        type="submit"
+        className={`modal__submit ${!isValid ? "modal__submit-disabled" : ""}`}
+        disabled={`${!isValid ? "disabled" : ""}`}
+      >
         Sign in
       </button>
       <button type="button" className="modal__alternate-text">
