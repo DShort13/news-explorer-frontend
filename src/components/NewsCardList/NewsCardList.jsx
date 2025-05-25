@@ -1,16 +1,41 @@
+import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList({ defaultNewsArticles }) {
+function NewsCardList({
+  // defaultNewsArticles,
+  searchResults,
+  handleSaveArticle,
+  handleUnsaveArticle,
+  handleRemoveArticle,
+}) {
+  let [cardView, setCardView] = useState(3);
+  const handleResults = () => setCardView(cardView + 3);
+
   return (
-    <div className="articles__container">
+    <section className="articles__container">
       <h2 className="articles__header">Search results</h2>
       <ul className="articles__list">
-        {defaultNewsArticles.map((item) => {
-          return <NewsCard key={item._id} item={item} />;
+        {searchResults.slice(0, cardView).map((item) => {
+          return (
+            <NewsCard
+              key={item._id}
+              item={item}
+              handleSaveArticle={handleSaveArticle}
+              handleUnsaveArticle={handleUnsaveArticle}
+              handleRemoveArticle={handleRemoveArticle}
+            />
+          );
         })}
       </ul>
-    </div>
+      {cardView <= searchResults.length ? (
+        <button className="articles__more-button" onClick={handleResults}>
+          Show more
+        </button>
+      ) : (
+        ""
+      )}
+    </section>
   );
 }
 

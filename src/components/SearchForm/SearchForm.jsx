@@ -1,12 +1,26 @@
 import { useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm() {
+function SearchForm({ onSubmit }) {
   const [searchItem, setSearchItem] = useState("");
+  const [isSearchValid, setIsSearchValid] = useState(true);
+  const [validationError, setValidationError] = useState("");
 
   const handleInputChange = (e) => {
     const searchTerm = e.target.value;
     setSearchItem(searchTerm);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchItem === "") {
+      setIsSearchValid(false);
+      setValidationError("Please enter a keyword");
+    } else {
+      setIsSearchValid(true);
+      onSubmit(searchItem);
+    }
+    setSearchItem("");
   };
 
   return (
@@ -18,13 +32,30 @@ function SearchForm() {
           account.
         </p>
       </div>
-      <input
-        type="text"
-        value={searchItem}
-        onChange={handleInputChange}
-        placeholder="Type to search"
-        className="search__bar"
-      />
+      <form className="search__form_container" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={searchItem}
+          minLength={2}
+          maxLength={30}
+          onChange={handleInputChange}
+          placeholder="Type to search"
+          className="search__bar"
+        />
+        <button
+          className="search__button"
+          name="search"
+          title="Search"
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+      <span
+        className={isSearchValid ? "search__error-inactive" : "search__error"}
+      >
+        {validationError}
+      </span>
     </div>
   );
 }

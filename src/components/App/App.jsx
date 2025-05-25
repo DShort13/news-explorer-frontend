@@ -9,9 +9,14 @@ import SavedNews from "../SavedNews/SavedNews";
 import LoginModal from "../LoginModal/LoginModal";
 import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import { removeArticle, saveArticle } from "../../utils/newsApi";
+import { getNewsArticles } from "../../utils/api";
+import noResultsFound from "../../assets/no-results-found.svg";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
+  const [savedArticles, setSavedArticles] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleLoginModal = () => {
     setActiveModal("login");
@@ -23,6 +28,73 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+  };
+
+  // Search article results
+  const handleArticleSearch = (userInput) => {
+    const searchNews = getNewsArticles(userInput);
+    searchNews
+      .then((data) => {
+        data.articles.forEach((item) => (item.keyword = userInput));
+        data.articles.forEach((item) => {
+          if (item.urlToImage === null) {
+            item.urlToImage = noResultsFound;
+          }
+          setSearchResults(data.articles);
+        });
+      })
+      .catch((err) => console.error(err));
+  };
+
+  // Save articles
+  const handleSaveArticle = (newsItem, keyword = "Keyword N/A") => {
+    saveArticle(newsItem, keyword)
+      .then((data) => {
+        setSavedArticles([...savedArticles, data]);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  // Unsave Article
+  const handleUnsaveArticle = (newsItem) => {
+    const isArticleSaved = savedArticles.some((article) => {
+      return article.link === newsItem.url;
+    });
+    const articleToRemove = isArticleSaved
+      ? savedArticles.find((article) => {
+          return article.link === newsItem.url;
+        })
+      : undefined;
+    removeArticle(articleToRemove._id)
+      .then(() => {
+        setSavedArticles(
+          savedArticles.filter((article) => {
+            return article.link !== newsItem.url;
+          })
+        );
+      })
+      .catch((err) => console.error(err));
+  };
+
+  // Remove articles
+  const handleRemoveArticle = (newsItem) => {
+    const isArticleSaved = savedArticles.some((article) => {
+      return article.link === newsItem.link;
+    });
+    const articleToRemove = isArticleSaved
+      ? savedArticles.find((article) => {
+          return article.link === newsItem.link;
+        })
+      : undefined;
+    removeArticle(articleToRemove._id)
+      .then(() => {
+        setSavedArticles(
+          savedArticles.filter((article) => {
+            return article.link !== newsItem.link;
+          })
+        );
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -42,8 +114,13 @@ function App() {
             path="/"
             element={
               <Main
-                defaultNewsArticles={defaultNewsArticles}
+                // defaultNewsArticles={defaultNewsArticles}
+                searchResults={searchResults}
+                handleArticleSearch={handleArticleSearch}
                 handleLoginModal={handleLoginModal}
+                handleSaveArticle={handleSaveArticle}
+                handleUnsaveArticle={handleUnsaveArticle}
+                handleRemoveArticle={handleRemoveArticle}
               />
             }
           />
