@@ -1,27 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm({ onSubmit }) {
-  const [searchItem, setSearchItem] = useState("");
+function SearchForm({ onSubmit, debounceFetch, query, setQuery }) {
   const [isSearchValid, setIsSearchValid] = useState(true);
   const [validationError, setValidationError] = useState("");
 
   const handleInputChange = (e) => {
     const searchTerm = e.target.value;
-    setSearchItem(searchTerm);
+    setQuery(searchTerm);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (searchItem === "") {
+
+    if (!query.trim()) {
       setIsSearchValid(false);
       setValidationError("Please enter a keyword");
-    } else {
-      setIsSearchValid(true);
-      onSubmit(searchItem);
+      return;
     }
-    setSearchItem("");
+
+    setIsSearchValid(true);
+    onSubmit(query);
   };
+
+  useEffect(() => {
+    return () => {
+      debounceFetch.cancel();
+    };
+  }, [debounceFetch]);
 
   return (
     <div>
@@ -35,7 +41,7 @@ function SearchForm({ onSubmit }) {
       <form className="search__form_container" onSubmit={handleSubmit}>
         <input
           type="text"
-          value={searchItem}
+          value={query}
           minLength={2}
           maxLength={30}
           onChange={handleInputChange}

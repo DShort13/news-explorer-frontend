@@ -1,29 +1,34 @@
-import Header from "../../Header/Header";
 import NewsCardList from "../../NewsCardList/NewsCardList";
+import Preloader from "../../Preloader/Preloader";
 import About from "../../About/About";
 
 function Main({
-  // defaultNewsArticles,
   searchResults,
-  handleArticleSearch,
-  handleLoginModal,
+  isLoading,
+  isSearching,
   handleSaveArticle,
   handleUnsaveArticle,
   handleRemoveArticle,
+  query,
 }) {
   return (
     <main>
-      <Header
-        handleLoginModal={handleLoginModal}
-        handleArticleSearch={handleArticleSearch}
-      />
-      <NewsCardList
-        // defaultNewsArticles={defaultNewsArticles}
-        searchResults={searchResults}
-        handleSaveArticle={handleSaveArticle}
-        handleUnsaveArticle={handleUnsaveArticle}
-        handleRemoveArticle={handleRemoveArticle}
-      />
+      {query && (
+        <section>
+          {isLoading === false ? (
+            <NewsCardList
+              isLoading={isLoading}
+              isSearching={isSearching}
+              searchResults={searchResults}
+              handleSaveArticle={handleSaveArticle}
+              handleUnsaveArticle={handleUnsaveArticle}
+              handleRemoveArticle={handleRemoveArticle}
+            />
+          ) : (
+            <Preloader />
+          )}
+        </section>
+      )}
       <About />
     </main>
   );

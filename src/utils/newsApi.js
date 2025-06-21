@@ -8,7 +8,7 @@ const saveArticle = ({
   date,
   description,
   image,
-  keyword,
+  keywords,
 }) => {
   const token = localStorage.getItem("jwt");
 
@@ -25,12 +25,12 @@ const saveArticle = ({
       date,
       description,
       image,
-      keyword,
+      keywords,
     }),
   });
 };
 
-const getSavedArticles = () => {
+const getSavedArticles = ({ token }) => {
   return request(`${newsApiBaseUrl}/articles`, {
     headers: {
       "Content-Type": "application/json",

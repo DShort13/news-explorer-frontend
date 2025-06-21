@@ -1,9 +1,11 @@
 import { useState } from "react";
+import NothingFound from "../NothingFound/NothingFound";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
 function NewsCardList({
-  // defaultNewsArticles,
+  isLoading,
+  isSearching,
   searchResults,
   handleSaveArticle,
   handleUnsaveArticle,
@@ -12,14 +14,16 @@ function NewsCardList({
   let [cardView, setCardView] = useState(3);
   const handleResults = () => setCardView(cardView + 3);
 
-  return (
+  return !isLoading && isSearching && searchResults.length === 0 ? (
+    <NothingFound />
+  ) : !isLoading && isSearching && searchResults.length >= 3 ? (
     <section className="articles__container">
       <h2 className="articles__header">Search results</h2>
       <ul className="articles__list">
         {searchResults.slice(0, cardView).map((item) => {
           return (
             <NewsCard
-              key={item._id}
+              key={item.url}
               item={item}
               handleSaveArticle={handleSaveArticle}
               handleUnsaveArticle={handleUnsaveArticle}
@@ -36,6 +40,8 @@ function NewsCardList({
         ""
       )}
     </section>
+  ) : (
+    ""
   );
 }
 

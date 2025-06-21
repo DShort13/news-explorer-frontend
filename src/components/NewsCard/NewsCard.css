@@ -44,3 +44,18 @@
   background-image: url(../../assets/save-hover.svg);
   cursor: pointer;
 }
+
+.article__save-btn-remove {
+  background-image: url(../../assets/saved.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+}
+
+/* .article__save-btn-remove:hover {
+  background-image: url(../../assets/save-hover.svg);
+} */

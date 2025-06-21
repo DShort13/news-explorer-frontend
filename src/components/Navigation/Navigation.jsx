@@ -1,21 +1,60 @@
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Navigation.css";
 
-function Navigation({ handleLoginModal }) {
+function Navigation({ handleLoginModal, handleLogOut }) {
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const navigate = useNavigate();
+  // const location = useLocation();
+
+  // const savedNewsPage = location.pathname.includes("/saved-news");
+
+  const handleHomeClick = () => {
+    navigate("/");
+  };
+
+  const handleSavedNews = () => {
+    navigate("/saved-news");
+  };
+
   return (
     <div className="navigation">
-      <Link to="/" className="navigation__links">
-        <p className="navigation__logo">NewsExplorer</p>
-      </Link>
+      <p
+        className="navigation__logo navigation__links"
+        onClick={handleHomeClick}
+      >
+        NewsExplorer
+      </p>
       <div className="navigation__user-container">
-        <Link to="/" className="navigation__links">
-          <p className="navigation__home">Home</p>
-        </Link>
-        {/* Below line is what a logged in user will see - will tackle in the next stage */}
-        {/* <p className="navigation__saved">Saved articles</p> */}
-        <button onClick={handleLoginModal} className="navigation__signin">
-          Sign in
-        </button>
+        <p
+          className="navigation__home navigation__links"
+          onClick={handleHomeClick}
+        >
+          Home
+        </p>
+        {currentUser && (
+          <div>
+            <button
+              className="navigation__saved"
+              type="button"
+              onClick={handleSavedNews}
+            >
+              Saved articles
+            </button>
+            {currentUser.username}
+            <button onClick={handleLogOut}></button>
+          </div>
+        )}
+        {!currentUser && (
+          <button
+            onClick={handleLoginModal}
+            className="navigation__signin"
+            type="button"
+          >
+            Sign in
+          </button>
+        )}
       </div>
     </div>
   );

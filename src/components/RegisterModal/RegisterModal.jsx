@@ -18,7 +18,7 @@ function RegisterModal({ isOpen, onClose, handleLoginModal }) {
 
   return (
     <ModalWithForm title="Sign up" isOpen={isOpen} onClose={onClose}>
-      <label for="email" className="modal__label">
+      <label htmlFor="email" className="modal__label">
         Email
         <input
           name="email"
@@ -30,7 +30,7 @@ function RegisterModal({ isOpen, onClose, handleLoginModal }) {
           placeholder="Enter email"
         />
       </label>
-      <label for="password" className="modal__label">
+      <label htmlFor="password" className="modal__label">
         Password
         <input
           name="password"
@@ -42,7 +42,7 @@ function RegisterModal({ isOpen, onClose, handleLoginModal }) {
           placeholder="Enter password"
         />
       </label>
-      <label for="username" className="modal__label">
+      <label htmlFor="username" className="modal__label">
         Username
         <input
           name="username"
