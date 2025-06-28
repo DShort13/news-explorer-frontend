@@ -1,13 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ isOpen, onClose, handleRegisterModal }) {
+function LoginModal({ isOpen, onClose, handleRegisterModal, handleLogIn }) {
   const { values, errors, handleChange, isValid, resetForm } =
     useFormAndValidation();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    handleLogIn({
+      email: values.email,
+      password: values.password,
+    })
+      .catch((err) => {
+        console.error("Login failed:", err);
+      })
+      .finally(() => setIsSubmitting(false));
   };
 
   useEffect(() => {
@@ -65,7 +77,7 @@ function LoginModal({ isOpen, onClose, handleRegisterModal }) {
       <button
         type="submit"
         className={`modal__submit ${!isValid ? "modal__submit-disabled" : ""}`}
-        // disabled={`${!isValid ? "disabled" : ""}`}
+        disabled={!isValid || isSubmitting}
       >
         Sign in
       </button>

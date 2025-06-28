@@ -7,9 +7,7 @@ import Footer from "../Footer/Footer";
 import Main from "../Main/Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import LoginModal from "../LoginModal/LoginModal";
-import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
 import { register, authorize, getUserInfo } from "../../utils/auth";
-import * as auth from "../../utils/auth";
 import * as token from "../../utils/token";
 import { getNewsArticles } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -36,6 +34,8 @@ function App() {
   const [keywords, setKeywords] = useState([]);
   const [query, setQuery] = useState("");
 
+  const navigate = useNavigate();
+
   const handleLoginModal = () => {
     setActiveModal("login");
   };
@@ -50,11 +50,11 @@ function App() {
 
   const handleLogIn = ({ email, password }) => {
     if (!email || !password) {
-      return;
+      return Promise.reject("Missing credentials");
     }
 
     // Ask the server to log the user in
-    authorize(email, password)
+    return authorize(email, password)
       .then((data) => {
         if (data?.token) {
           token.setToken(data.token); // Save token in local storage
@@ -66,20 +66,44 @@ function App() {
       })
       .then((userInfo) => {
         setCurrentUser(userInfo);
-        setCurrentUser(userInfo);
         setIsLoggedIn(true);
         console.log("User info updated:", userInfo);
+        closeActiveModal();
+        localStorage.setItem("currentUser", JSON.stringify(userInfo));
+        navigate("/");
       })
       .catch(console.error);
   };
 
   const handleLogOut = () => {
-    token.removeToken();
+    // token.removeToken();
+    localStorage.removeItem("currentUser");
     setIsLoggedIn(false);
     setCurrentUser(null);
     setJwt(null);
     navigate("/");
     console.log("User successfully logged out");
+  };
+
+  const handleRegister = ({ email, password, username }) => {
+    return register(email, password, username)
+      .then((data) => {
+        if (data.success && data.token) {
+          token.setToken(data.token);
+          setJwt(data.token);
+          return getUserInfo(data.token);
+        } else {
+          throw new Error("Registration failed");
+        }
+      })
+      .then((userInfo) => {
+        setCurrentUser(userInfo);
+        setIsLoggedIn(true);
+        setActiveModal("");
+      })
+      .catch((err) => {
+        console.error("Error during registration:", err);
+      });
   };
 
   // Search article results
@@ -112,7 +136,8 @@ function App() {
       return;
     }
 
-    const { id, source, title, date, description, image, keywords } = data.data;
+    console.log("Saving article, received data:", data);
+    const { id, source, title, date, description, image, keywords } = data;
 
     saveArticle({
       id,
@@ -201,8 +226,14 @@ function App() {
 
   useEffect(() => {
     if (!jwt) {
-      setCurrentUser(null);
-      setIsLoggedIn(false);
+      const savedUser = localStorage.getItem("currentUser");
+      if (savedUser) {
+        setCurrentUser(JSON.parse(savedUser));
+        setIsLoggedIn(true);
+      } else {
+        setCurrentUser(null);
+        setIsLoggedIn(false);
+      }
       return;
     }
 
@@ -274,6 +305,7 @@ function App() {
               isOpen={activeModal === "register"}
               onClose={closeActiveModal}
               handleLoginModal={handleLoginModal}
+              handleRegister={handleRegister}
             />
           </div>
         </div>
