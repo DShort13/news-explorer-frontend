@@ -3,7 +3,13 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Navigation.css";
 
-function Navigation({ handleLoginModal, handleLogOut }) {
+function Navigation({
+  handleLoginModal,
+  handleLogOut,
+  setSearchResults,
+  setIsSearching,
+  setQuery,
+}) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   // const location = useLocation();
@@ -11,6 +17,9 @@ function Navigation({ handleLoginModal, handleLogOut }) {
   // const savedNewsPage = location.pathname.includes("/saved-news");
 
   const handleHomeClick = () => {
+    setSearchResults([]);
+    setIsSearching(false);
+    setQuery("");
     navigate("/");
   };
 

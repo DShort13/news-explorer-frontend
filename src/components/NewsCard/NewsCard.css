@@ -45,17 +45,36 @@
   cursor: pointer;
 }
 
-.article__save-btn-remove {
+.article__save-btn--saved {
   background-image: url(../../assets/saved.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: 0;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 8px;
 }
 
-/* .article__save-btn-remove:hover {
-  background-image: url(../../assets/save-hover.svg);
-} */
+.article__save-btn--remove {
+  background-image: url(../../assets/trash.svg);
+}
+
+.article__save-btn--remove:hover {
+  background-image: url(../../assets/trash-hover.svg);
+}
+
+.article__tooltip {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.article__save-container:hover .article__tooltip {
+  visibility: visible;
+  opacity: 1;
+}

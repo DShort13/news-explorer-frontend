@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import { useEffect, useMemo, useState } from "react";
 
@@ -35,6 +35,7 @@ function App() {
   const [query, setQuery] = useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLoginModal = () => {
     setActiveModal("login");
@@ -109,22 +110,22 @@ function App() {
   // Search article results
   const handleArticleSearch = (userInput) => {
     setIsLoading(true);
-    const searchNews = getNewsArticles(userInput);
-    searchNews
+    setIsSearching(true);
+    navigate("/");
+
+    getNewsArticles(userInput)
       .then((data) => {
-        const processedArticles = data.articles.map((item) => {
-          return {
-            ...item,
-            keyword: userInput,
-            urlToImage: item.urlToImage || nothingFound,
-          };
-        });
+        const processedArticles = data.articles.map((item) => ({
+          ...item,
+          keyword: userInput,
+          urlToImage: item.urlToImage || nothingFound,
+        }));
         setSearchResults(processedArticles);
-        setIsSearching(true);
-        setIsLoading(false);
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   };
@@ -224,30 +225,75 @@ function App() {
     return () => document.removeEventListener("keydown", handleEscClose);
   }, [activeModal]);
 
+  // useEffect(() => {
+  //   if (!jwt) {
+  //     const savedUser = localStorage.getItem("currentUser");
+  //     if (savedUser) {
+  //       setCurrentUser(JSON.parse(savedUser));
+  //       setIsLoggedIn(true);
+  //     } else {
+  //       setCurrentUser(null);
+  //       setIsLoggedIn(false);
+  //     }
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+
+  //   Promise.all([getUserInfo(jwt), getSavedArticles({ token: jwt })])
+  //     .then(([userInfo, savedArticles]) => {
+  //       setCurrentUser(userInfo);
+  //       setIsLoggedIn(true);
+  //       setSavedArticles(savedArticles);
+  //     })
+  //     .catch(console.error)
+  //     .finally(() => setIsLoading(false));
+  // }, [jwt]);
+
   useEffect(() => {
-    if (!jwt) {
-      const savedUser = localStorage.getItem("currentUser");
-      if (savedUser) {
-        setCurrentUser(JSON.parse(savedUser));
-        setIsLoggedIn(true);
-      } else {
-        setCurrentUser(null);
-        setIsLoggedIn(false);
-      }
+    const storedToken = token.getToken();
+
+    if (!storedToken) {
+      setCurrentUser(null);
+      setIsLoggedIn(false);
       return;
     }
 
+    setJwt(storedToken);
     setIsLoading(true);
 
-    Promise.all([getUserInfo(jwt), getSavedArticles({ token: jwt })])
+    Promise.all([
+      getUserInfo(storedToken),
+      getSavedArticles({ token: storedToken }),
+    ])
       .then(([userInfo, savedArticles]) => {
         setCurrentUser(userInfo);
         setIsLoggedIn(true);
         setSavedArticles(savedArticles);
+
+        const lastPath = localStorage.getItem("lastVisitedPath");
+        if (lastPath) navigate(lastPath);
       })
-      .catch(console.error)
+      .catch((err) => {
+        console.error("Session restore failed:", err);
+        setCurrentUser(null);
+        setIsLoggedIn(false);
+        token.removeToken();
+      })
       .finally(() => setIsLoading(false));
-  }, [jwt]);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("lastVisitedPath", location.pathname);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setQuery("");
+      setSearchResults([]);
+      setIsSearching(false);
+    }
+  }, [location.pathname]);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
@@ -263,6 +309,8 @@ function App() {
                 query={query}
                 setQuery={setQuery}
                 onSubmit={handleArticleSearch}
+                setSearchResults={setSearchResults}
+                setIsSearching={setIsSearching}
               />
             </header>
             <Routes>

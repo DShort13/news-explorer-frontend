@@ -1,8 +1,8 @@
+import { useLocation } from "react-router-dom";
 import { useContext, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedNewsContext from "../../contexts/SavedNewsContext";
 import "./NewsCard.css";
-import { useLocation } from "react-router-dom";
 
 function NewsCard({
   item,
@@ -17,7 +17,10 @@ function NewsCard({
 
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const { savedArticles, setSavedArticles } = useContext(SavedNewsContext);
-  const [isSaved, setIsSaved] = useState(false);
+
+  const isSaved = savedArticles.some(
+    (article) => article.url === item.url || article.link === item.url
+  );
   // const [showIcon, setShowIcon] = useState(false);
   const location = useLocation();
 
@@ -25,28 +28,26 @@ function NewsCard({
   // const handleHideIcon = () => setShowIcon(false);
 
   const handleSaveClick = () => {
-    if (!item) {
-      console.error("Data is null or undefined");
+    if (!currentUser) {
+      console.error("User not logged in");
       return;
     }
 
-    if (!isSaved) {
-      setSavedArticles((prevSavedArticles) => {
-        const updatedArticles = [...prevSavedArticles, item];
-        console.log("savedUpdatedArticles:", updatedArticles);
-        return updatedArticles;
-      });
-      handleSaveArticle(item);
-      setIsSaved(true);
+    if (isSaved) {
+      handleUnsaveArticle(item);
     } else {
-      setSavedArticles((prevSavedArticles) => {
-        const updatedArticles = prevSavedArticles.filter(
-          (article) => article && article.id !== item.id
-        );
-        console.log("updates:", updatedArticles);
-        return updatedArticles;
-      });
-      setIsSaved(false);
+      const articleData = {
+        id: item.url,
+        source: item.source.name,
+        title: item.title,
+        date: item.publishedAt,
+        description: item.description,
+        image: item.urlToImage,
+        keywords: item.keyword,
+        link: item.url,
+      };
+
+      handleSaveArticle(articleData);
     }
   };
 
@@ -60,14 +61,15 @@ function NewsCard({
         alt={item.description}
       />
       {currentUser ? (
-        location.pathname === "/savedNews" ? (
+        location.pathname === "/saved-news" ? (
           <div className="article__save-container">
             <button
               type="button"
-              className="article__save-btn-remove"
+              className="article__save-btn article__save-btn--remove"
               onClick={() => handleRemoveArticle(item.id)}
+              title="Remove from saved"
             />
-            <span>Remove from saved</span>
+            <span className="article__tooltip">Remove from saved</span>
             <div>
               <span>{item?.keywords}</span>
             </div>
@@ -76,15 +78,24 @@ function NewsCard({
           <div className="article__save-container">
             <button
               type="button"
-              className="article__save-btn"
+              className={`article__save-btn ${
+                isSaved ? "article__save-btn--saved" : ""
+              }`}
               onClick={handleSaveClick}
+              title={isSaved ? "Remove from saved" : "Save article"}
             />
-            <span>Sign in to save articles</span>
           </div>
         )
       ) : (
-        <div>
-          <button type="button" className="article__save-btn"></button>
+        <div className="article__save-container">
+          <button
+            type="button"
+            className="article__save-btn"
+            aria-label="Sign in to save articles"
+            onClick={() => alert("Please sign in to save articles")}
+          >
+            <span className="article__tooltip">Sign in to save articles</span>
+          </button>
         </div>
       )}
       <p>{dateFormat.toLocaleDateString("en-us", options)}</p>

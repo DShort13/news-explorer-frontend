@@ -71,6 +71,7 @@ const getUserInfo = (token) => {
         resolve({
           email: "mockuser@example.com",
           username: "MockUser",
+          _id: "123456789",
         });
       } else {
         reject(new Error("Invalid token"));

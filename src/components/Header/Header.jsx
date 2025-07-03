@@ -11,6 +11,8 @@ function Header({
   debounceFetch,
   query,
   setQuery,
+  setSearchResults,
+  setIsSearching,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -20,6 +22,9 @@ function Header({
         <Navigation
           handleLoginModal={handleLoginModal}
           handleLogOut={handleLogOut}
+          setSearchResults={setSearchResults}
+          setIsSearching={setIsSearching}
+          setQuery={setQuery}
         />
         {currentUser && (
           <div>Welcome, {currentUser.username || currentUser.email}</div>
