@@ -14,6 +14,7 @@ function SavedNews({ savedArticles, handleRemoveArticle }) {
 
   const uniqueKeywords = [...new Set(allKeywords)];
   console.log("All unique keywords:", uniqueKeywords);
+  console.log(savedArticles);
 
   const keywordsText =
     uniqueKeywords.length > 2
@@ -40,14 +41,10 @@ function SavedNews({ savedArticles, handleRemoveArticle }) {
       </section>
       <div>
         <ul>
-          {savedArticles.map((item, index) => (
-            <SavedText
-              key={index}
-              data={item}
-              handleSavedNews={() => handleSavedNews({ data: item })}
-              handleRemoveArticle={handleRemoveArticle}
-            />
-          ))}
+          <SavedText
+            handleRemoveArticle={handleRemoveArticle}
+            savedArticles={savedArticles}
+          />
         </ul>
       </div>
     </div>

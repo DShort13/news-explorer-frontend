@@ -19,7 +19,7 @@ function NewsCard({
   const { savedArticles, setSavedArticles } = useContext(SavedNewsContext);
 
   const isSaved = savedArticles.some(
-    (article) => article.url === item.url || article.link === item.url
+    (article) => article.link === item.url || article.link === item.link
   );
   // const [showIcon, setShowIcon] = useState(false);
   const location = useLocation();
@@ -33,18 +33,23 @@ function NewsCard({
       return;
     }
 
+    if (!item) {
+      console.error("No article item provided to save.");
+      return;
+    }
+
     if (isSaved) {
       handleUnsaveArticle(item);
     } else {
       const articleData = {
-        id: item.url,
-        source: item.source.name,
+        id: item.url || item.link || item.id,
+        source: item.source?.name || item.source,
         title: item.title,
-        date: item.publishedAt,
+        date: item.publishedAt || item.date,
         description: item.description,
-        image: item.urlToImage,
-        keywords: item.keyword,
-        link: item.url,
+        image: item.urlToImage || item.image,
+        keywords: item.keyword || item.keywords,
+        link: item.url || item.link || item.id,
       };
 
       handleSaveArticle(articleData);
@@ -66,7 +71,7 @@ function NewsCard({
             <button
               type="button"
               className="article__save-btn article__save-btn--remove"
-              onClick={() => handleRemoveArticle(item.id)}
+              onClick={() => handleRemoveArticle(item)}
               title="Remove from saved"
             />
             <span className="article__tooltip">Remove from saved</span>

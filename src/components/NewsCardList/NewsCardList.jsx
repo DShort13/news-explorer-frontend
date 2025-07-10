@@ -23,7 +23,7 @@ function NewsCardList({
         {searchResults.slice(0, cardView).map((item) => {
           return (
             <NewsCard
-              key={item.url}
+              key={item._id || item.url}
               item={item}
               handleSaveArticle={handleSaveArticle}
               handleUnsaveArticle={handleUnsaveArticle}

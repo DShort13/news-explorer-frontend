@@ -137,6 +137,12 @@ function App() {
       return;
     }
 
+    const isAlreadySaved = savedArticles.some(
+      (article) => article.link === data.link
+    );
+
+    if (isAlreadySaved) return;
+
     console.log("Saving article, received data:", data);
     const { id, source, title, date, description, image, keywords } = data;
 
@@ -149,6 +155,7 @@ function App() {
       image,
       token: jwt,
       keywords,
+      link: data.url || data.link || data.id,
     })
       .then((data) => {
         setSavedArticles([...savedArticles, data]);
@@ -179,24 +186,45 @@ function App() {
 
   // Remove articles
   const handleRemoveArticle = (newsItem) => {
-    const isArticleSaved = savedArticles.some((article) => {
-      return article.link === newsItem.link;
-    });
-    const articleToRemove = isArticleSaved
-      ? savedArticles.find((article) => {
-          return article.link === newsItem.link;
-        })
-      : undefined;
+    if (!newsItem) return;
+
+    const articleToRemove = savedArticles.find(
+      (article) => article.link === newsItem.link
+    );
+
+    if (!articleToRemove || !articleToRemove._id) {
+      console.warn("No matching article found to remove");
+      return;
+    }
+
     removeArticle(articleToRemove._id)
       .then(() => {
-        setSavedArticles(
-          savedArticles.filter((article) => {
-            return article.link !== newsItem.link;
-          })
+        setSavedArticles((prev) =>
+          prev.filter((article) => article._id !== articleToRemove._id)
         );
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("Failed to remove articles:", err));
   };
+
+  // const handleRemoveArticle = (newsItem) => {
+  //   const isArticleSaved = savedArticles.some((article) => {
+  //     return article.link === newsItem.link;
+  //   });
+  //   const articleToRemove = isArticleSaved
+  //     ? savedArticles.find((article) => {
+  //         return article.link === newsItem.link;
+  //       })
+  //     : undefined;
+  //   removeArticle(articleToRemove._id)
+  //     .then(() => {
+  //       setSavedArticles(
+  //         savedArticles.filter((article) => {
+  //           return article.link !== newsItem.link;
+  //         })
+  //       );
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
 
   // Debounce fetch
   const debounceFetch = useMemo(() => {
