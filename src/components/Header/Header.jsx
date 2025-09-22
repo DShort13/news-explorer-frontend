@@ -7,9 +7,9 @@ import "./Header.css";
 function Header({
   handleLoginModal,
   handleLogOut,
-  handleArticleSearch,
-  debounceFetch,
-  query,
+  // handleArticleSearch,
+  // debounceFetch,
+  // query,
   setQuery,
   setSearchResults,
   setIsSearching,
@@ -26,18 +26,15 @@ function Header({
           setIsSearching={setIsSearching}
           setQuery={setQuery}
         />
-        {currentUser && (
-          <div>Welcome, {currentUser.username || currentUser.email}</div>
-        )}
       </div>
-      <div className="search__container">
+      {/* <div className="search__container">
         <SearchForm
           onSubmit={handleArticleSearch}
           debounceFetch={debounceFetch}
           query={query}
           setQuery={setQuery}
         />
-      </div>
+      </div> */}
     </header>
   );
 }

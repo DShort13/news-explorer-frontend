@@ -1,7 +1,13 @@
+.header-search__container {
+  background-image: url(../../assets/search-background.png);
+  background-size: cover;
+}
+
 .header__container {
   display: flex;
   flex-direction: column;
-  background-image: url(../../assets/search-background.png);
+  /* background-image: url(../../assets/search-background.png);
+  background-size: cover; */
 }
 
 .header__logo {

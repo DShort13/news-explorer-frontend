@@ -56,8 +56,6 @@ function NewsCard({
     }
   };
 
-  // const handleDeleteClick = () => handleRemoveArticle(item);
-
   return (
     <li className="articles">
       <img

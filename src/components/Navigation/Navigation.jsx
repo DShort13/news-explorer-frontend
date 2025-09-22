@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Navigation.css";
+import close from "../../assets/close.svg";
 
 function Navigation({
   handleLoginModal,
@@ -12,15 +13,25 @@ function Navigation({
 }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
 
-  // const savedNewsPage = location.pathname.includes("/saved-news");
+  const savedNewsPage = location.pathname.includes("/saved-news");
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prevState) => !prevState);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   const handleHomeClick = () => {
-    setSearchResults([]);
-    setIsSearching(false);
-    setQuery("");
     navigate("/");
+    if (setSearchResults) setSearchResults([]);
+    if (setIsSearching) setIsSearching(false);
+    if (setQuery) setQuery("");
   };
 
   const handleSavedNews = () => {
@@ -28,43 +39,207 @@ function Navigation({
   };
 
   return (
+    //   <div className="navigation">
+    //     <p
+    //       className={`navigation__logo ${savedNewsPage ? "font-black" : ""}`}
+    //       onClick={handleHomeClick}
+    //     >
+    //       NewsExplorer
+    //     </p>
+    //     {isMobileMenuOpen && (
+    //       <div className="navigation__overlay" onClick={closeMobileMenu}></div>
+    //     )}
+
+    //     {!isMobileMenuOpen && (
+    //       <button
+    //         className={`navigation__mobile-menu ${
+    //           currentUser && savedNewsPage ? "black" : ""
+    //         }`}
+    //       ></button>
+    //     )}
+    //     {/* <button
+    //       className={`navigation__mobile-menu ${
+    //         currentUser && savedNewsPage ? "black" : ""
+    //       }`}
+    //       onClick={toggleMobileMenu}
+    //     ></button> */}
+    //     <nav className={`navigation__nav ${isMobileMenuOpen ? "open" : ""}`}>
+    //       <div className="navigation__nav-header">
+    //         <p
+    //           className={`navigation__logo ${savedNewsPage ? "font-black" : ""}`}
+    //           onClick={handleHomeClick}
+    //         >
+    //           NewsExplorer
+    //         </p>
+    //         <button
+    //           className={`navigation__mobile-menu ${
+    //             currentUser && savedNewsPage ? "black" : ""
+    //           }`}
+    //           onClick={toggleMobileMenu}
+    //         ></button>
+    //         <button>
+    //           <img
+    //             src={close}
+    //             alt="close button"
+    //             className="navigation__close-btn"
+    //             onClick={closeMobileMenu}
+    //           />
+    //         </button>
+    //       </div>
+
+    //       <div className="navigation__user-container">
+    //         <p
+    //           className={`navigation__home navigation__links ${
+    //             savedNewsPage ? "font-black" : ""
+    //           } ${isMobileMenuOpen ? "show-mobile" : ""} ${
+    //             !currentUser && isMobileMenuOpen ? "logged-out-shift" : ""
+    //           }`}
+    //           onClick={handleHomeClick}
+    //         >
+    //           Home
+    //         </p>
+
+    //         {currentUser && (
+    //           <div className="navigation__logged-in_control">
+    //             <p
+    //               className={`navigation__saved ${
+    //                 savedNewsPage ? "font-black" : ""
+    //               }`}
+    //               onClick={handleSavedNews}
+    //             >
+    //               Saved articles
+    //             </p>
+    //             <div
+    //               className={`navigation__username ${
+    //                 savedNewsPage ? "font-black" : ""
+    //               }`}
+    //             >
+    //               {currentUser.username}
+    //               <button
+    //                 onClick={handleLogOut}
+    //                 type="button"
+    //                 className={`navigation__logout ${
+    //                   savedNewsPage ? "logout-black" : "logout-white"
+    //                 }`}
+    //               ></button>
+    //             </div>
+    //           </div>
+    //         )}
+
+    //         {!currentUser && (
+    //           <button
+    //             onClick={handleLoginModal}
+    //             className={`navigation__signin ${
+    //               !currentUser && isMobileMenuOpen ? "logged-out-margin" : ""
+    //             }`}
+    //             type="button"
+    //           >
+    //             Sign in
+    //           </button>
+    //         )}
+    //       </div>
+    //     </nav>
+    //   </div>
+    // );
     <div className="navigation">
+      {/* Logo */}
       <p
-        className="navigation__logo navigation__links"
+        className={`navigation__logo ${savedNewsPage ? "font-black" : ""}`}
         onClick={handleHomeClick}
       >
         NewsExplorer
       </p>
-      <div className="navigation__user-container">
-        <p
-          className="navigation__home navigation__links"
-          onClick={handleHomeClick}
-        >
-          Home
-        </p>
-        {currentUser && (
-          <div>
-            <button
-              className="navigation__saved"
-              type="button"
-              onClick={handleSavedNews}
+
+      {/* Hamburger button (only when menu is closed) */}
+      {!isMobileMenuOpen && (
+        <button
+          className={`navigation__mobile-menu ${
+            currentUser && savedNewsPage ? "black" : ""
+          }`}
+          onClick={toggleMobileMenu}
+        ></button>
+      )}
+
+      {/* Overlay (dark background behind mobile nav) */}
+      {isMobileMenuOpen && (
+        <div className="navigation__overlay" onClick={closeMobileMenu}></div>
+      )}
+
+      {/* Mobile Nav */}
+      <nav className={`navigation__nav ${isMobileMenuOpen ? "open" : ""}`}>
+        <div className="navigation__nav-header-wrapper">
+          <div className="navigation__nav-header">
+            <p
+              className={`navigation__logo ${
+                savedNewsPage ? "font-black" : ""
+              }`}
+              onClick={handleHomeClick}
             >
-              Saved articles
+              NewsExplorer
+            </p>
+            <button className="navigation__close-btn" onClick={closeMobileMenu}>
+              <img
+                className="navigation__close-btn_image"
+                src={close}
+                alt="close"
+              />
             </button>
-            {currentUser.username}
-            <button onClick={handleLogOut}></button>
           </div>
-        )}
-        {!currentUser && (
-          <button
-            onClick={handleLoginModal}
-            className="navigation__signin"
-            type="button"
-          >
-            Sign in
-          </button>
-        )}
-      </div>
+        </div>
+
+        <div className="navigation__nav-inner">
+          <div className="navigation__user-container">
+            {/* Home Link */}
+            <p
+              className={`navigation__home navigation__links ${
+                savedNewsPage ? "font-black" : ""
+              }`}
+              onClick={handleHomeClick}
+            >
+              Home
+            </p>
+
+            {/* When logged in */}
+            {currentUser ? (
+              <div className="navigation__logged-in_control">
+                <p
+                  className={`navigation__saved ${
+                    savedNewsPage ? "font-black" : ""
+                  }`}
+                  onClick={handleSavedNews}
+                >
+                  Saved articles
+                </p>
+                <div
+                  className={`navigation__username ${
+                    savedNewsPage ? "font-black" : ""
+                  }`}
+                >
+                  {currentUser.username}
+                  <button
+                    onClick={handleLogOut}
+                    type="button"
+                    className={`navigation__logout ${
+                      savedNewsPage ? "logout-black" : "logout-white"
+                    }`}
+                  ></button>
+                </div>
+              </div>
+            ) : (
+              // When logged out
+              <button
+                onClick={handleLoginModal}
+                className={`navigation__signin ${
+                  isMobileMenuOpen ? "navigation__signin-mobile" : ""
+                }`}
+                type="button"
+              >
+                Sign in
+              </button>
+            )}
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 
 import "./App.css";
 import Footer from "../Footer/Footer";
@@ -21,6 +21,8 @@ import nothingFound from "../../assets/no-results-found.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedNewsContext from "../../contexts/SavedNewsContext";
 import Header from "../Header/Header";
+import { set } from "lodash";
+import SearchForm from "../SearchForm/SearchForm";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -29,7 +31,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [jwt, setJwt] = useState(token.getToken());
-  const [currentUser, setCurrentUser] = useState(null);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [keywords, setKeywords] = useState([]);
   const [query, setQuery] = useState("");
@@ -77,8 +79,8 @@ function App() {
   };
 
   const handleLogOut = () => {
-    // token.removeToken();
     localStorage.removeItem("currentUser");
+    token.removeToken();
     setIsLoggedIn(false);
     setCurrentUser(null);
     setJwt(null);
@@ -324,69 +326,85 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-      <SavedNewsContext.Provider value={{ savedArticles, setSavedArticles }}>
-        <div className="page">
-          <div className="page__content">
-            <header>
-              <Header
-                handleLoginModal={handleLoginModal}
-                handleLogOut={handleLogOut}
-                handleArticleSearch={handleArticleSearch}
+    <SavedNewsContext.Provider value={{ savedArticles, setSavedArticles }}>
+      <div className="page">
+        <div className="page__content">
+          <header className="header-search__container">
+            {/* {location.pathname === "/" && (
+                <Header
+                  handleLoginModal={handleLoginModal}
+                  handleLogOut={handleLogOut}
+                  handleArticleSearch={handleArticleSearch}
+                  debounceFetch={debounceFetch}
+                  query={query}
+                  setQuery={setQuery}
+                  onSubmit={handleArticleSearch}
+                  setSearchResults={setSearchResults}
+                  setIsSearching={setIsSearching}
+                />
+              )} */}
+            <Header
+              handleLoginModal={handleLoginModal}
+              handleLogOut={handleLogOut}
+              handleArticleSearch={handleArticleSearch}
+              setSearchResults={setSearchResults}
+              setQuery={setQuery}
+            />
+
+            {location.pathname === "/" && (
+              <SearchForm
+                onSubmit={handleArticleSearch}
                 debounceFetch={debounceFetch}
                 query={query}
                 setQuery={setQuery}
-                onSubmit={handleArticleSearch}
-                setSearchResults={setSearchResults}
-                setIsSearching={setIsSearching}
               />
-            </header>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    searchResults={searchResults}
-                    isLoading={isLoading}
-                    isSearching={isSearching}
-                    handleSaveArticle={handleSaveArticle}
-                    handleUnsaveArticle={handleUnsaveArticle}
-                    handleRemoveArticle={handleRemoveArticle}
-                    query={query}
-                  />
-                }
-              />
-              <Route
-                path="/saved-news"
-                element={
-                  <SavedNews
-                    savedArticles={savedArticles}
-                    setSavedArticles={setSavedArticles}
-                    handleRemoveArticle={handleRemoveArticle}
-                    keywords={keywords}
-                  />
-                }
-              />
-            </Routes>
-            <Footer />
-          </div>
-          <div>
-            <LoginModal
-              isOpen={activeModal === "login"}
-              onClose={closeActiveModal}
-              handleRegisterModal={handleRegisterModal}
-              handleLogIn={handleLogIn}
+            )}
+          </header>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  searchResults={searchResults}
+                  isLoading={isLoading}
+                  isSearching={isSearching}
+                  handleSaveArticle={handleSaveArticle}
+                  handleUnsaveArticle={handleUnsaveArticle}
+                  handleRemoveArticle={handleRemoveArticle}
+                  query={query}
+                />
+              }
             />
-            <RegisterModal
-              isOpen={activeModal === "register"}
-              onClose={closeActiveModal}
-              handleLoginModal={handleLoginModal}
-              handleRegister={handleRegister}
+            <Route
+              path="/saved-news"
+              element={
+                <SavedNews
+                  savedArticles={savedArticles}
+                  setSavedArticles={setSavedArticles}
+                  handleRemoveArticle={handleRemoveArticle}
+                  keywords={keywords}
+                />
+              }
             />
-          </div>
+          </Routes>
+          <Footer />
         </div>
-      </SavedNewsContext.Provider>
-    </CurrentUserContext.Provider>
+        <div>
+          <LoginModal
+            isOpen={activeModal === "login"}
+            onClose={closeActiveModal}
+            handleRegisterModal={handleRegisterModal}
+            handleLogIn={handleLogIn}
+          />
+          <RegisterModal
+            isOpen={activeModal === "register"}
+            onClose={closeActiveModal}
+            handleLoginModal={handleLoginModal}
+            handleRegister={handleRegister}
+          />
+        </div>
+      </div>
+    </SavedNewsContext.Provider>
   );
 }
 
