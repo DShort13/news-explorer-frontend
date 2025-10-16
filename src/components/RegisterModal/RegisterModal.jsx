@@ -78,7 +78,7 @@ function RegisterModal({ isOpen, onClose, handleLoginModal, handleRegister }) {
           name="username"
           type="username"
           id="username"
-          className="modal__username"
+          className="modal__input"
           value={values.username || ""}
           onChange={handleChange}
           required
