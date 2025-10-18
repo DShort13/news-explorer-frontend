@@ -4,7 +4,6 @@ import "./SearchForm.css";
 function SearchForm({
   onSubmit,
   setSearchResults,
-  debounceFetch,
   setIsSearching,
   query,
   setQuery,
@@ -40,12 +39,6 @@ function SearchForm({
       onSubmit(query);
     }
   };
-
-  // useEffect(() => {
-  //   return () => {
-  //     debounceFetch.cancel();
-  //   };
-  // }, [debounceFetch]);
 
   return (
     <div className="search__container">
