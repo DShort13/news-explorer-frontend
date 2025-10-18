@@ -333,23 +333,9 @@ function App() {
       <div className="page">
         <div className="page__content">
           <header className="header-search__container">
-            {/* {location.pathname === "/" && (
-                <Header
-                  handleLoginModal={handleLoginModal}
-                  handleLogOut={handleLogOut}
-                  handleArticleSearch={handleArticleSearch}
-                  debounceFetch={debounceFetch}
-                  query={query}
-                  setQuery={setQuery}
-                  onSubmit={handleArticleSearch}
-                  setSearchResults={setSearchResults}
-                  setIsSearching={setIsSearching}
-                />
-              )} */}
             <Header
               handleLoginModal={handleLoginModal}
               handleLogOut={handleLogOut}
-              // handleArticleSearch={handleArticleSearch}
               setSearchResults={setSearchResults}
               setQuery={setQuery}
             />
