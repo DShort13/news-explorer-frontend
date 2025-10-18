@@ -59,6 +59,7 @@
   border: none;
   cursor: pointer;
   background-color: transparent;
+  visibility: hidden;
 }
 
 .navigation__mobile-menu.black {
@@ -71,6 +72,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  visibility: hidden;
 }
 
 .navigation__overlay {
@@ -98,6 +100,16 @@
 
 .navigation__logo.font-black {
   color: black;
+}
+
+.navigation__mobile-logo {
+  margin: 0;
+  color: white;
+  font-family: "Roboto-Slab", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  visibility: hidden;
 }
 
 /* .navigation__close-btn {
@@ -315,6 +327,14 @@
   border-radius: 100px;
   width: 176px;
   height: 48px;
+  color: white;
+  border-color: white;
+  border-style: solid;
+}
+
+.navigation__signin.font-black {
+  color: #1a1b22;
+  border-color: #1a1b22;
 }
 
 @media screen and (max-width: 768px) {
@@ -329,6 +349,7 @@
 
   .navigation__mobile-menu {
     display: none;
+    visibility: visible;
   }
 
   .navigation__home {
@@ -397,7 +418,7 @@
     background-color: transparent;
   }
 
-  .navigation__logo {
+  .navigation__mobile-logo {
     display: block;
     width: 140px;
     color: white;
@@ -416,6 +437,7 @@
 
   .navigation__close-btn {
     display: block;
+    visibility: visible;
     background-color: transparent;
     border: none;
     padding: 0;

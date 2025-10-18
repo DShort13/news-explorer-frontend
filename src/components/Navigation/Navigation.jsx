@@ -170,7 +170,7 @@ function Navigation({
         <div className="navigation__nav-header-wrapper">
           <div className="navigation__nav-header">
             <p
-              className={`navigation__logo ${
+              className={`navigation__mobile-logo ${
                 savedNewsPage ? "font-black" : ""
               }`}
               onClick={handleHomeClick}
@@ -231,7 +231,7 @@ function Navigation({
                 onClick={handleLoginModal}
                 className={`navigation__signin ${
                   isMobileMenuOpen ? "navigation__signin-mobile" : ""
-                }`}
+                } ${savedNewsPage ? "font-black" : ""}`}
                 type="button"
               >
                 Sign in

@@ -1,33 +1,51 @@
 import { useEffect, useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm({ onSubmit, debounceFetch, query, setQuery }) {
+function SearchForm({
+  onSubmit,
+  setSearchResults,
+  debounceFetch,
+  setIsSearching,
+  query,
+  setQuery,
+}) {
   const [isSearchValid, setIsSearchValid] = useState(true);
   const [validationError, setValidationError] = useState("");
 
   const handleInputChange = (e) => {
     const searchTerm = e.target.value;
     setQuery(searchTerm);
+    setSearchResults([]);
+    setIsSearching(false);
+
+    if (!searchTerm) {
+      setIsSearchValid(false);
+      setValidationError("Please enter a keyword");
+    } else {
+      setIsSearchValid(true);
+      setValidationError("");
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!query.trim()) {
+    if (!query || !query.trim()) {
       setIsSearchValid(false);
       setValidationError("Please enter a keyword");
       return;
+    } else {
+      setIsSearchValid(true);
+      setValidationError("");
+      onSubmit(query);
     }
-
-    setIsSearchValid(true);
-    onSubmit(query);
   };
 
-  useEffect(() => {
-    return () => {
-      debounceFetch.cancel();
-    };
-  }, [debounceFetch]);
+  // useEffect(() => {
+  //   return () => {
+  //     debounceFetch.cancel();
+  //   };
+  // }, [debounceFetch]);
 
   return (
     <div className="search__container">
@@ -39,8 +57,8 @@ function SearchForm({ onSubmit, debounceFetch, query, setQuery }) {
             account.
           </p>
           {/* </div> */}
-          <div className="search__form_controls">
-            <label className="search__form_container" onSubmit={handleSubmit}>
+          <form className="search__form_controls" onSubmit={handleSubmit}>
+            <label className="search__form_container">
               <input
                 type="text"
                 id="search-input"
@@ -67,7 +85,7 @@ function SearchForm({ onSubmit, debounceFetch, query, setQuery }) {
             >
               {validationError}
             </span>
-          </div>
+          </form>
         </div>
       </div>
     </div>

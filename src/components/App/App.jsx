@@ -35,6 +35,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [keywords, setKeywords] = useState([]);
   const [query, setQuery] = useState("");
+  const [currentSearch, setCurrentSearch] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -113,6 +114,8 @@ function App() {
   const handleArticleSearch = (userInput) => {
     setIsLoading(true);
     setIsSearching(true);
+    setSearchResults([]);
+    setCurrentSearch(userInput);
     navigate("/");
 
     getNewsArticles(userInput)
@@ -346,7 +349,7 @@ function App() {
             <Header
               handleLoginModal={handleLoginModal}
               handleLogOut={handleLogOut}
-              handleArticleSearch={handleArticleSearch}
+              // handleArticleSearch={handleArticleSearch}
               setSearchResults={setSearchResults}
               setQuery={setQuery}
             />
@@ -357,6 +360,8 @@ function App() {
                 debounceFetch={debounceFetch}
                 query={query}
                 setQuery={setQuery}
+                setSearchResults={setSearchResults}
+                setIsSearching={setIsSearching}
               />
             )}
           </header>

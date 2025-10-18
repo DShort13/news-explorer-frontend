@@ -1,3 +1,17 @@
 .articles__container {
   padding: 80px 104px;
+  background: #f5f6f7;
+}
+
+.articles__more-button {
+  display: flex;
+  justify-self: center;
+  border-radius: 50px;
+  border: none;
+  height: 56px;
+  width: 240px;
+  flex-wrap: wrap;
+  place-content: center;
+  font-size: 18px;
+  background-color: #fff;
 }
