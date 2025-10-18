@@ -49,7 +49,6 @@ function SearchForm({
             Find the latest news on any topic and save them in your personal
             account.
           </p>
-          {/* </div> */}
           <form className="search__form_controls" onSubmit={handleSubmit}>
             <label className="search__form_container">
               <input

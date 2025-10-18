@@ -47,7 +47,7 @@
 }
 
 /* Responsive views */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .footer {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -71,5 +71,12 @@
   .footer__text-group {
     flex-direction: column;
     gap: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

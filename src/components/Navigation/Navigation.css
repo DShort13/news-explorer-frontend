@@ -369,6 +369,10 @@
     padding: 16px;
   }
 
+  .navigation__logo {
+    z-index: 11;
+  }
+
   .navigation__mobile-menu.black {
     display: block;
   }
@@ -407,6 +411,7 @@
     align-items: center;
     width: 100%;
     margin-bottom: 0;
+    z-index: 12;
   }
 
   .navigation__mobile-menu {
