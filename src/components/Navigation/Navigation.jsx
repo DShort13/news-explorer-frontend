@@ -141,7 +141,7 @@ function Navigation({
     //     </nav>
     //   </div>
     // );
-    <div className="navigation">
+    <div className={`navigation ${savedNewsPage ? "black" : ""}`}>
       {/* Logo */}
       <p
         className={`navigation__logo ${savedNewsPage ? "font-black" : ""}`}

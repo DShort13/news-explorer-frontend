@@ -29,7 +29,6 @@ function SavedNews({ savedArticles, handleRemoveArticle }) {
 
   return (
     <div>
-      <Navigation />
       <section className="saved__info">
         <p>Saved articles</p>
         <p>

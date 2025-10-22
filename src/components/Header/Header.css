@@ -3,6 +3,10 @@
   background-size: cover;
 }
 
+.header-search__container.black {
+  background: none;
+}
+
 .header__container {
   display: flex;
   flex-direction: column;

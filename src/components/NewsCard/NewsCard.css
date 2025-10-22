@@ -79,6 +79,15 @@
   z-index: 1;
 }
 
+.article__keywords_container {
+  position: absolute;
+  left: 293px;
+}
+
+.article__keywords {
+  position: relative;
+}
+
 .article__save-container:hover .article__tooltip {
   visibility: visible;
   opacity: 1;

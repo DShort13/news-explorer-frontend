@@ -73,8 +73,8 @@ function NewsCard({
               title="Remove from saved"
             />
             <span className="article__tooltip">Remove from saved</span>
-            <div>
-              <span>{item?.keywords}</span>
+            <div className="article__keywords_container">
+              <span className="article__keywords">{item?.keywords}</span>
             </div>
           </div>
         ) : (

@@ -40,6 +40,8 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const savedNewsPage = location.pathname.includes("/saved-news");
+
   const handleLoginModal = () => {
     setActiveModal("login");
   };
@@ -332,7 +334,11 @@ function App() {
     <SavedNewsContext.Provider value={{ savedArticles, setSavedArticles }}>
       <div className="page">
         <div className="page__content">
-          <header className="header-search__container">
+          <header
+            className={`header-search__container ${
+              savedNewsPage ? "black" : ""
+            }`}
+          >
             <Header
               handleLoginModal={handleLoginModal}
               handleLogOut={handleLogOut}
