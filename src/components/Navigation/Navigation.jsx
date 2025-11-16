@@ -144,7 +144,7 @@ function Navigation({
     <div className={`navigation ${savedNewsPage ? "black" : ""}`}>
       {/* Logo */}
       <p
-        className={`navigation__logo ${savedNewsPage ? "font-black" : ""}`}
+        className={`${isMobileMenuOpen ? "navigation__mobile-logo" : "navigation__logo"} ${savedNewsPage ? "font-black" : ""}`}
         onClick={handleHomeClick}
       >
         NewsExplorer

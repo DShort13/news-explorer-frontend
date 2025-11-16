@@ -428,6 +428,7 @@
     width: 140px;
     color: white;
     align-self: flex-start;
+    visibility: visible;
   }
 
   .navigation__overlay {
