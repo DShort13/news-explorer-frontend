@@ -47,7 +47,6 @@ function LoginModal({ isOpen, onClose, handleRegisterModal, handleLogIn }) {
           required
           placeholder="Enter email"
         />
-      </label>
       {errors?.email && (
         <>
           <span className="modal__error" id="email-input-error">
@@ -55,6 +54,7 @@ function LoginModal({ isOpen, onClose, handleRegisterModal, handleLogIn }) {
           </span>
         </>
       )}
+      </label>
       <label htmlFor="password" className="modal__label">
         Password
         <input
@@ -68,12 +68,12 @@ function LoginModal({ isOpen, onClose, handleRegisterModal, handleLogIn }) {
           minLength="2"
           placeholder="Enter password"
         />
-      </label>
       {errors.password && (
         <span className="modal__error" id="password-input-error">
           {errors.password}
         </span>
       )}
+      </label>
       <button
         type="submit"
         className={`modal__submit ${!isValid ? "modal__submit-disabled" : ""}`}
