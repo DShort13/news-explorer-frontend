@@ -110,4 +110,8 @@
   .article__image {
     height: 196px;
   }
+
+  .article__save-container:hover .article__tooltip {
+    transform: translateX(-75%);
+  }
 }
