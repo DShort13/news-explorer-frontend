@@ -84,7 +84,7 @@
   background-color: #1a5dd0;
 }
 
-@media screen and (min-width: 321px) and (max-width: 768px) {
+@media screen and (min-width: 376px) and (max-width: 768px) {
   .search__container {
     display: flex;
     flex-direction: column;
@@ -138,7 +138,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 375px) {
   /* .search__container {
     height: 480px;
     padding: 30px 16px 32px 16px;

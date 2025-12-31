@@ -101,7 +101,22 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 376px) and (max-width: 768px) {
+    .articles__list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .articles {
+      max-height: 520px;
+    }
+
+    .article__image {
+      height: 196px;
+    }
+  }
+
+@media screen and (max-width: 375px) {
   .articles__header {
     padding-bottom: 58px;
   }

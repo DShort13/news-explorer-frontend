@@ -29,7 +29,7 @@ input:-webkit-autofill:active {
   transition: background-color 5000000s ease-in-out 0s;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .page {
     max-width: 320px;
   }

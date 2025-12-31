@@ -16,7 +16,13 @@
   background-color: #fff;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 376px) and (max-width: 768px) {
+  .articles__container {
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 375px) {
   .articles__container {
     padding: 32px 16px 24px;
   }

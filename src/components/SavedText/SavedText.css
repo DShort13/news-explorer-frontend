@@ -13,7 +13,18 @@
   padding-bottom: 64px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 376px) and (max-width: 768px) {
+  .saved-text__container {
+    padding: 0 40px;
+  }
+
+  .saved-text__articles_list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 375px) {
   .saved-text__container {
     padding: 32px 16px 24px;
   }
