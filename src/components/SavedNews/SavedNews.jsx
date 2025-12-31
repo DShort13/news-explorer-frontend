@@ -39,12 +39,10 @@ function SavedNews({ savedArticles, handleRemoveArticle }) {
         </p>
       </section>
       <div>
-        <ul>
           <SavedText
             handleRemoveArticle={handleRemoveArticle}
             savedArticles={savedArticles}
           />
-        </ul>
       </div>
     </div>
   );

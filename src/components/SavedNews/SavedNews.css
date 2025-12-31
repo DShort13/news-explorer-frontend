@@ -1,3 +1,9 @@
 .saved__info {
   padding: 40px 104px 56px;
 }
+
+@media screen and (max-width: 320px) {
+  .saved__info {
+    padding: 8px 16px 32px;
+  }
+}

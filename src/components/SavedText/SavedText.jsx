@@ -1,4 +1,4 @@
-import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
+// import { defaultNewsArticles } from "../../utils/defaultNewsArticles";
 import NewsCard from "../NewsCard/NewsCard";
 import "./SavedText.css";
 
