@@ -13,8 +13,6 @@ function SavedNews({ savedArticles, handleRemoveArticle }) {
     .filter(Boolean);
 
   const uniqueKeywords = [...new Set(allKeywords)];
-  console.log("All unique keywords:", uniqueKeywords);
-  console.log(savedArticles);
 
   const keywordsText =
     uniqueKeywords.length > 2

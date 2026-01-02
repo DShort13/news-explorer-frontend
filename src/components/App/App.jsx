@@ -212,26 +212,6 @@ function App() {
       .catch((err) => console.error("Failed to remove articles:", err));
   };
 
-  // const handleRemoveArticle = (newsItem) => {
-  //   const isArticleSaved = savedArticles.some((article) => {
-  //     return article.link === newsItem.link;
-  //   });
-  //   const articleToRemove = isArticleSaved
-  //     ? savedArticles.find((article) => {
-  //         return article.link === newsItem.link;
-  //       })
-  //     : undefined;
-  //   removeArticle(articleToRemove._id)
-  //     .then(() => {
-  //       setSavedArticles(
-  //         savedArticles.filter((article) => {
-  //           return article.link !== newsItem.link;
-  //         })
-  //       );
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
-
   // Debounce fetch
   const debounceFetch = useMemo(() => {
     return debounce(() => {
@@ -258,31 +238,6 @@ function App() {
     document.addEventListener("keydown", handleEscClose);
     return () => document.removeEventListener("keydown", handleEscClose);
   }, [activeModal]);
-
-  // useEffect(() => {
-  //   if (!jwt) {
-  //     const savedUser = localStorage.getItem("currentUser");
-  //     if (savedUser) {
-  //       setCurrentUser(JSON.parse(savedUser));
-  //       setIsLoggedIn(true);
-  //     } else {
-  //       setCurrentUser(null);
-  //       setIsLoggedIn(false);
-  //     }
-  //     return;
-  //   }
-
-  //   setIsLoading(true);
-
-  //   Promise.all([getUserInfo(jwt), getSavedArticles({ token: jwt })])
-  //     .then(([userInfo, savedArticles]) => {
-  //       setCurrentUser(userInfo);
-  //       setIsLoggedIn(true);
-  //       setSavedArticles(savedArticles);
-  //     })
-  //     .catch(console.error)
-  //     .finally(() => setIsLoading(false));
-  // }, [jwt]);
 
   useEffect(() => {
     const storedToken = token.getToken();
