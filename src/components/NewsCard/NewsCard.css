@@ -54,6 +54,11 @@
   background-image: url(../../assets/saved.svg);
 }
 
+.article__save-btn--saved:hover {
+  background-image: url(../../assets/saved.svg);
+  cursor: pointer;
+}
+
 .article__save-btn--remove {
   background-image: url(../../assets/trash.svg);
 }
