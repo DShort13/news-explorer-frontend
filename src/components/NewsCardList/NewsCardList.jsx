@@ -16,7 +16,7 @@ function NewsCardList({
 
   return !isLoading && isSearching && searchResults.length === 0 ? (
     <NothingFound />
-  ) : !isLoading && isSearching && searchResults.length >= 3 ? (
+  ) : !isLoading && isSearching && searchResults.length >= 0 ? (
     <section className="articles__container">
       <h2 className="articles__header">Search results</h2>
       <ul className="articles__list">
