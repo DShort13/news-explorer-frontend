@@ -413,9 +413,6 @@
     border: none;
     padding: 0;
     align-self: flex-end;
-    /* top: 10px;
-    right: 10px;
-    width: 25px; */
   }
 
   .navigation__close-btn_image {

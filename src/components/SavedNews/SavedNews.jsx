@@ -5,7 +5,7 @@ import "./SavedNews.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function SavedNews({ savedArticles, handleRemoveArticle }) {
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   const allKeywords = savedArticles
     .map((item) => item.keywords)

@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 import "./Header.css";
@@ -7,14 +5,10 @@ import "./Header.css";
 function Header({
   handleLoginModal,
   handleLogOut,
-  // handleArticleSearch,
-  // debounceFetch,
-  // query,
   setQuery,
   setSearchResults,
   setIsSearching,
 }) {
-  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <header className="header__container">
@@ -27,14 +21,6 @@ function Header({
           setQuery={setQuery}
         />
       </div>
-      {/* <div className="search__container">
-        <SearchForm
-          onSubmit={handleArticleSearch}
-          debounceFetch={debounceFetch}
-          query={query}
-          setQuery={setQuery}
-        />
-      </div> */}
     </header>
   );
 }

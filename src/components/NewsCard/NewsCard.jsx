@@ -18,7 +18,7 @@ function NewsCard({
   };
   const dateFormatted = dateFormat(item.publishedAt);
 
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const { savedArticles, setSavedArticles } = useContext(SavedNewsContext);
 
   const isSaved = savedArticles.some(

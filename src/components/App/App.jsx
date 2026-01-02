@@ -21,7 +21,6 @@ import nothingFound from "../../assets/no-results-found.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedNewsContext from "../../contexts/SavedNewsContext";
 import Header from "../Header/Header";
-import { set } from "lodash";
 import SearchForm from "../SearchForm/SearchForm";
 
 function App() {
