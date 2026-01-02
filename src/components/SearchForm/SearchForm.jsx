@@ -14,8 +14,6 @@ function SearchForm({
   const handleInputChange = (e) => {
     const searchTerm = e.target.value;
     setQuery(searchTerm);
-    setSearchResults([]);
-    setIsSearching(false);
 
     if (!searchTerm) {
       setIsSearchValid(false);
