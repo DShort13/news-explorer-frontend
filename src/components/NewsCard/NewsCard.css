@@ -61,6 +61,11 @@
 
 .article__save-btn--remove {
   background-image: url(../../assets/trash.svg);
+  background-color: #fff;
+  background-size: 24px 24px;
+  background-position: center;
+  width: 40px;
+  height: 40px;
 }
 
 .article__save-btn--remove:hover {
@@ -91,9 +96,12 @@
 }
 
 .article__keywords {
+  display: flex;
+  align-items: center;
+  height: 40px;
   background-color: #fff;
-  padding: 8px 22px;
-  border-radius: 4px;
+  padding: 0 22px;
+  border-radius: 10px;
   font-family: "Roboto", Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
