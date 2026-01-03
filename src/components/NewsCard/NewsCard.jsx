@@ -16,7 +16,7 @@ function NewsCard({
     // Convert published date into Date format
     return new Date(dateString).toLocaleDateString("en-us", options);
   };
-  const dateFormatted = dateFormat(item.publishedAt);
+  const dateFormatted = dateFormat(item.publishedAt || item.date);
 
   const { currentUser } = useContext(CurrentUserContext);
   const { savedArticles, setSavedArticles } = useContext(SavedNewsContext);
@@ -24,11 +24,7 @@ function NewsCard({
   const isSaved = savedArticles.some(
     (article) =>   article.link === item.url || article.link === item.link
   );
-  // const [showIcon, setShowIcon] = useState(false);
   const location = useLocation();
-
-  // const handleShowIcon = () => setShowIcon(true);
-  // const handleHideIcon = () => setShowIcon(false);
 
   const handleSaveClick = () => {
     if (!currentUser) {
@@ -107,7 +103,6 @@ function NewsCard({
         </div>
       )}
         <p className="article__date">{dateFormatted}</p>
-        {/* <p>{item.source.name}</p> */}
         <p className="article__title">{item.title}</p>
         <p className="article__description">{item.description}</p>
         <p className="article__source-name">{item.source.name}</p>
