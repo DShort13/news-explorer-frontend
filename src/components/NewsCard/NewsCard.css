@@ -152,10 +152,6 @@
     background-image: url(../../assets/save.svg);
   }
 
-  /* .article__save-btn--saved:hover {
-    background-image: url(../../assets/save.svg);
-  } */
-
   .article__save-btn--remove:hover {
     background-image: none;
   }
