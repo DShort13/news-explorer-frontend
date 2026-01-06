@@ -1,0 +1,29 @@
+.modal__content--success {
+  max-width: 430px;
+  padding: 34px 36px 28px;
+}
+
+.modal__success-link {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #2f71e5;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.modal__success-link:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 375px) {
+  .modal__content--success {
+    width: 100%;
+    padding: 16px 20px 24px;
+    border-radius: 18px 18px 0 0;
+    align-self: flex-end;
+  }
+}

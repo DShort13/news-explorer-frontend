@@ -11,6 +11,7 @@ import { register, authorize, getUserInfo } from "../../utils/auth";
 import * as token from "../../utils/token";
 import { getNewsArticles } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import SuccessModal from "../SuccessModal/SuccessModal"
 import {
   getSavedArticles,
   removeArticle,
@@ -92,17 +93,10 @@ function App() {
     return register(email, password, username)
       .then((data) => {
         if (data.success && data.token) {
-          token.setToken(data.token);
-          setJwt(data.token);
-          return getUserInfo(data.token);
+          setActiveModal("success");
         } else {
           throw new Error("Registration failed");
         }
-      })
-      .then((userInfo) => {
-        setCurrentUser(userInfo);
-        setIsLoggedIn(true);
-        setActiveModal("");
       })
       .catch((err) => {
         console.error("Error during registration:", err);
@@ -349,6 +343,11 @@ function App() {
             onClose={closeActiveModal}
             handleLoginModal={handleLoginModal}
             handleRegister={handleRegister}
+          />
+          <SuccessModal
+            isOpen={activeModal === "success"}
+            onClose={closeActiveModal}
+            handleLoginModal={handleLoginModal}
           />
         </div>
       </div>
