@@ -35,3 +35,7 @@ Future Improvements
 - Multiple news API integration
 - Social sharing features
 - Dark mode support
+
+Author
+
+Dion Short
