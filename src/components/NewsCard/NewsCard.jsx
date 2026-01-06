@@ -97,15 +97,16 @@ function NewsCard({
             className="article__save-btn"
             aria-label="Sign in to save articles"
             onClick={() => alert("Please sign in to save articles")}
-          >
-            <span className="article__tooltip">Sign in to save articles</span>
-          </button>
+          />
+          <span className="article__tooltip">Sign in to save articles</span>
         </div>
       )}
+      <div className="article__text-container">
         <p className="article__date">{dateFormatted}</p>
         <p className="article__title">{item.title}</p>
         <p className="article__description">{item.description}</p>
-        <p className="article__source-name">{item.source.name}</p>
+        <p className="article__source-name">{item.source?.name || item.source}</p>
+      </div>
     </li>
   );
 }

@@ -6,11 +6,10 @@
 .saved-text__articles_list {
   justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 62px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  padding-bottom: 64px;
 }
 
 @media screen and (min-width: 376px) and (max-width: 768px) {

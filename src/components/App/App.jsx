@@ -72,7 +72,6 @@ function App() {
       .then((userInfo) => {
         setCurrentUser(userInfo);
         setIsLoggedIn(true);
-        console.log("User info updated:", userInfo);
         closeActiveModal();
         localStorage.setItem("currentUser", JSON.stringify(userInfo));
         navigate("/");
@@ -87,7 +86,6 @@ function App() {
     setCurrentUser(null);
     setJwt(null);
     navigate("/");
-    console.log("User successfully logged out");
   };
 
   const handleRegister = ({ email, password, username }) => {
@@ -149,7 +147,6 @@ function App() {
 
     if (isAlreadySaved) return;
 
-    console.log("Saving article, received data:", data);
     const { id, source, title, date, description, image, keywords } = data;
 
     saveArticle({

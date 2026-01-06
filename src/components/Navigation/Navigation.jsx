@@ -11,7 +11,7 @@ function Navigation({
   setIsSearching,
   setQuery,
 }) {
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const location = useLocation();
 

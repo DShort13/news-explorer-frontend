@@ -28,12 +28,12 @@ function SavedNews({ savedArticles, handleRemoveArticle }) {
   return (
     <div>
       <section className="saved__info">
-        <p>Saved articles</p>
-        <p>
+        <p className="saved__info-keyword_title">Saved articles</p>
+        <p className="saved__info-keyword_number">
           {currentUser.username}, you have {savedArticles.length} saved articles
         </p>
-        <p>
-          By keywords: <span>{keywordsText}</span>
+        <p className="saved__info-keyword_list">
+          By keywords: <span className="saved__info-keywords">{keywordsText}</span>
         </p>
       </section>
       <div>
