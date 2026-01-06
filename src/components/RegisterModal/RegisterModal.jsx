@@ -17,9 +17,7 @@ function RegisterModal({ isOpen, onClose, handleLoginModal, handleRegister }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted");
     setIsSubmitting(true);
-    console.log("Attempting registration:", values);
 
     handleRegister({
       email: values.email,
