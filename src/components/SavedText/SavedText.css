@@ -12,7 +12,7 @@
   gap: 16px;
 }
 
-@media screen and (min-width: 376px) and (max-width: 768px) {
+@media screen and (min-width: 376px) and (max-width: 767px) {
   .saved-text__container {
     padding: 0 40px;
   }

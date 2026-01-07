@@ -318,7 +318,7 @@
   border-color: #1a1b22;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .navigation {
     padding: 20px 40px;
   }
