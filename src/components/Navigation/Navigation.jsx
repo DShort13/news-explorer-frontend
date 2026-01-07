@@ -91,7 +91,7 @@ function Navigation({
             <p
               className={`navigation__home navigation__links ${
                 savedNewsPage ? "font-black" : ""
-              }`}
+              } ${!savedNewsPage ? "navigation__link--active" : ""}`}
               onClick={handleHomeClick}
             >
               Home
@@ -103,7 +103,7 @@ function Navigation({
                 <p
                   className={`navigation__saved ${
                     savedNewsPage ? "font-black" : ""
-                  }`}
+                  } ${savedNewsPage ? "navigation__link--active" : ""}`}
                   onClick={handleSavedNews}
                 >
                   Saved articles

@@ -126,6 +126,10 @@
   transition: width 0.3s ease-in-out;
 }
 
+.navigation__home.navigation__link--active::after {
+  width: 68px;
+}
+
 .navigation__home.font-black {
   color: #1a1b22;
   background: none;
@@ -148,6 +152,10 @@
 .navigation__home.font-black:hover::after {
   width: 68px;
   transition: width 0.3s ease-in-out;
+}
+
+.navigation__home.font-black.navigation__link--active::after {
+  width: 68px;
 }
 
 .navigation__logged-in_control {
@@ -186,6 +194,10 @@
   width: 166px;
 }
 
+.navigation__saved.navigation__link--active::after {
+  width: 166px;
+}
+
 .navigation__saved.font-black {
   color: #1a1b22;
   background: none;
@@ -205,6 +217,10 @@
 }
 
 .navigation__saved.font-black:hover::after {
+  width: 166px;
+}
+
+.navigation__saved.font-black.navigation__link--active::after {
   width: 166px;
 }
 
