@@ -5,15 +5,14 @@
   left: 0;
   right: 0;
   background-color: #0000004d;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
   z-index: 1;
 }
 
 .modal_opened {
-  visibility: visible;
+  display: flex;
 }
 
 .modal__content {
@@ -131,16 +130,10 @@
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
     justify-content: center;
     align-items: center;
-    visibility: hidden;
     z-index: 1000;
     overflow-y: auto;
-  }
-
-  .modal_opened {
-    visibility: visible;
   }
 
   .modal__content {

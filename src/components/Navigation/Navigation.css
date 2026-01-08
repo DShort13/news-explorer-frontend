@@ -318,7 +318,7 @@
   border-color: #1a1b22;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .navigation {
     padding: 20px 40px;
   }
@@ -336,9 +336,18 @@
     padding: 0;
   }
 
+  .navigation__home::after {
+    bottom: -49px;
+  }
+
+
   .navigation__saved {
     margin-left: 0;
     margin-right: 16px;
+  }
+
+  .navigation__saved.font-black::after {
+    bottom: -49px;
   }
 
   .navigation__logged-in_control {
