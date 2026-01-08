@@ -56,7 +56,7 @@ function NewsCard({
   };
 
   return (
-    <li className="articles">
+    <li className="article">
       <a
         href={item.url || item.link}
         target="_blank"

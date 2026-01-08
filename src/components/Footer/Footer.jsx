@@ -8,7 +8,7 @@ function Footer() {
       <p className="footer__copyright"> © 2025 Supersite, Powered by API</p>
       <div className="footer__links">
         <div className="footer__text-group">
-          <Link to="/" className="navigation__links">
+          <Link to="/" className="footer__link">
             <p className="footer__home">Home</p>
           </Link>
           <a href="https://tripleten.com/" className="footer__social-link">

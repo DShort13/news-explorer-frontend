@@ -7,7 +7,7 @@
   background: none;
 }
 
-.header__container {
+.header {
   display: flex;
   flex-direction: column;
 }

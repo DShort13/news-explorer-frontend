@@ -17,7 +17,7 @@ function NewsCardList({
   return !isLoading && isSearching && searchResults.length === 0 ? (
     <NothingFound />
   ) : !isLoading && isSearching && searchResults.length >= 0 ? (
-    <section className="articles__container">
+    <section className="articles">
       <h2 className="articles__header">Search results</h2>
       <ul className="articles__list">
         {searchResults.slice(0, cardView).map((item) => {

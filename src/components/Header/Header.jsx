@@ -10,8 +10,8 @@ function Header({
 }) {
 
   return (
-    <header className="header__container">
-      <div className="navigation__container">
+    <header className="header">
+      <div className="navigation__nav-wrapper">
         <Navigation
           handleLoginModal={handleLoginModal}
           handleLogOut={handleLogOut}

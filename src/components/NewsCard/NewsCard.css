@@ -13,7 +13,7 @@
   padding-bottom: 64px;
 }
 
-.articles {
+.article {
   max-height: 576px;
   list-style-type: none;
   position: relative;

@@ -24,6 +24,10 @@
   gap: 40px;
 }
 
+.footer__link {
+  text-decoration: none;
+}
+
 .footer__text-group,
 .footer__home,
 .footer__tripleten {
