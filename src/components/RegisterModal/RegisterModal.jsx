@@ -7,7 +7,6 @@ function RegisterModal({ isOpen, onClose, handleLoginModal, handleRegister }) {
   const { values, errors, handleChange, isValid, resetForm } =
     useFormAndValidation({ email: "", password: "", username: "" });
 
-  const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isFilled =
@@ -30,7 +29,7 @@ function RegisterModal({ isOpen, onClose, handleLoginModal, handleRegister }) {
     if (isOpen) {
       resetForm();
     }
-  }, [isOpen]);
+  }, [isOpen, resetForm]);
 
   return (
     <ModalWithForm

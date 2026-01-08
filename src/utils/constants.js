@@ -1,6 +1,6 @@
 export const APIkey = "8e74bf7be8f34aa6a4fe2a5646394aa9";
 export const newsApiBaseUrl =
-  process.env.NODE_ENV === "production"
+  import.meta.env.NODE_ENV === "production"
     ? "https://nomoreparties.co/news/v2/everything"
     : "http://localhost:3001";
 export const newsApiUrl = "https://newsapi.org/v2/everything";

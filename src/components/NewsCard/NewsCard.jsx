@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedNewsContext from "../../contexts/SavedNewsContext";
 import "./NewsCard.css";
@@ -19,7 +19,7 @@ function NewsCard({
   const dateFormatted = dateFormat(item.publishedAt || item.date);
 
   const { currentUser } = useContext(CurrentUserContext);
-  const { savedArticles, setSavedArticles } = useContext(SavedNewsContext);
+  const { savedArticles } = useContext(SavedNewsContext);
 
   const isSaved = savedArticles.some(
     (article) =>   article.link === item.url || article.link === item.link

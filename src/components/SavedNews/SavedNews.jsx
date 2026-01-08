@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import Navigation from "../Navigation/Navigation";
 import SavedText from "../SavedText/SavedText";
 import "./SavedNews.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";

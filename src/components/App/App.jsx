@@ -31,11 +31,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [jwt, setJwt] = useState(token.getToken());
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [keywords, setKeywords] = useState([]);
+  const { setCurrentUser } = useContext(CurrentUserContext);
+  const [ setIsLoggedIn] = useState(false);
+  const [keywords] = useState([]);
   const [query, setQuery] = useState("");
-  const [currentSearch, setCurrentSearch] = useState("");
+  const [setCurrentSearch] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -261,7 +261,7 @@ function App() {
         token.removeToken();
       })
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [navigate, setCurrentUser, setIsLoggedIn]);
 
   useEffect(() => {
     localStorage.setItem("lastVisitedPath", location.pathname);

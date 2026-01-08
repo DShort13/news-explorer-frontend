@@ -1,12 +1,12 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 export function useFormAndValidation(initialValues = {}) {
-  const defaultValues = {
+  const defaultValues = useMemo(() => ({
     email: "",
     password: "",
     username: "",
     ...initialValues,
-  };
+  }), [initialValues]);
   const [values, setValues] = useState(defaultValues);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -24,7 +24,7 @@ export function useFormAndValidation(initialValues = {}) {
       setErrors(newErrors);
       setIsValid(newIsValid);
     },
-    [initialValues]
+    [defaultValues]
   );
 
   return {

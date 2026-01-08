@@ -1,7 +1,3 @@
-import { newsApiBaseUrl } from "./constants";
-import { request } from "./api";
-import { reject } from "lodash";
-
 // Generating mock responses since the backend isn't set up yet
 let mockSavedArticles = JSON.parse(
   localStorage.getItem("mockSavedArticles") || "[]"
@@ -40,35 +36,6 @@ const saveArticle = ({
   });
 };
 
-// const saveArticle = ({
-//   id,
-//   source,
-//   title,
-//   date,
-//   description,
-//   image,
-//   keywords,
-// }) => {
-//   const token = localStorage.getItem("jwt");
-
-//   return request(`${newsApiBaseUrl}/articles`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify({
-//       id,
-//       source,
-//       title,
-//       date,
-//       description,
-//       image,
-//       keywords,
-//     }),
-//   });
-// };
-
 const getSavedArticles = ({ token }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -80,15 +47,6 @@ const getSavedArticles = ({ token }) => {
     }, 300);
   });
 };
-
-// const getSavedArticles = ({ token }) => {
-//   return request(`${newsApiBaseUrl}/articles`, {
-//     headers: {
-//       "Content-Type": "application/json",
-//       authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
 
 const removeArticle = (id) => {
   return new Promise((resolve) => {
@@ -104,15 +62,5 @@ const removeArticle = (id) => {
     });
   });
 };
-
-// const removeArticle = (id) => {
-//   return request(`${newsApiBaseUrl}/articles/${id}`, {
-//     method: "DELETE",
-//     headers: {
-//       "Content-Type": "application/json",
-//       authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
 
 export { saveArticle, getSavedArticles, removeArticle };
