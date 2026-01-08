@@ -39,6 +39,12 @@
   color: black;
 }
 
+.footer__home:hover,
+.footer__tripleten:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .footer__social-link {
   align-self: flex-start;
   text-decoration: none;
@@ -49,6 +55,10 @@
   display: block;
   height: 24px;
   width: 24px;
+}
+
+.footer__github:hover {
+  opacity: 0.7;
 }
 
 /* Responsive views */

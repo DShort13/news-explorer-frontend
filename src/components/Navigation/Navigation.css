@@ -294,6 +294,10 @@
   cursor: pointer;
 }
 
+.navigation__logout:hover {
+  opacity: 0.7;
+}
+
 .navigation__logout.logout-black {
   background-image: url("../../assets/logout-black.svg");
 }
@@ -311,6 +315,11 @@
   color: white;
   border-color: white;
   border-style: solid;
+}
+
+.navigation__signin:hover {
+  cursor: pointer;
+  opacity: 0.85;
 }
 
 .navigation__signin.font-black {
@@ -438,6 +447,10 @@
     border: none;
     padding: 0;
     align-self: flex-end;
+  }
+
+  .navigation__close-btn:hover {
+    opacity: 0.7;
   }
 
   .navigation__close-btn_image {
