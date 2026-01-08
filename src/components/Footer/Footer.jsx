@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className="footer">
       <p className="footer__copyright"> © 2025 Supersite, Powered by API</p>
-      <div className="footer__links">
+      <nav className="footer__links">
         <div className="footer__text-group">
           <Link to="/" className="footer__link">
             <p className="footer__home">Home</p>
@@ -18,7 +18,7 @@ function Footer() {
         <a href="https://github.com/DShort13">
           <img className="footer__github" src={githubIcon} alt="GitHub link" />
         </a>
-      </div>
+      </nav>
     </footer>
   );
 }
