@@ -29,7 +29,7 @@ function RegisterModal({ isOpen, onClose, handleLoginModal, handleRegister }) {
     if (isOpen) {
       resetForm();
     }
-  }, [isOpen, resetForm]);
+  }, [isOpen]);
 
   return (
     <ModalWithForm

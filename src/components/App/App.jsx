@@ -32,7 +32,7 @@ function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [jwt, setJwt] = useState(token.getToken());
   const { setCurrentUser } = useContext(CurrentUserContext);
-  const [ setIsLoggedIn] = useState(false);
+  const [ , setIsLoggedIn] = useState(false);
   const [keywords] = useState([]);
   const [query, setQuery] = useState("");
   const [setCurrentSearch] = useState("");

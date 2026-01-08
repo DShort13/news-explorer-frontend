@@ -26,7 +26,7 @@ function LoginModal({ isOpen, onClose, handleRegisterModal, handleLogIn }) {
     if (isOpen) {
       resetForm();
     }
-  }, [isOpen, resetForm]);
+  }, [isOpen]);
 
   return (
     <ModalWithForm
