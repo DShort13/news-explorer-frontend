@@ -24,5 +24,4 @@ module.exports = {
       files: ["*.js", "*.jsx"],
     },
   ],
-  s,
 };
