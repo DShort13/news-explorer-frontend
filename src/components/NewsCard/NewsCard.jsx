@@ -57,11 +57,24 @@ function NewsCard({
 
   return (
     <li className="articles">
-      <img
-        className="article__image"
-        src={item.urlToImage || item.image}
-        alt={item.description}
-      />
+      <a
+        href={item.url || item.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="article__link"
+      >
+        <img
+          className="article__image"
+          src={item.urlToImage || item.image}
+          alt={item.description}
+        />
+        <div className="article__text-container">
+          <p className="article__date">{dateFormatted}</p>
+          <p className="article__title">{item.title}</p>
+          <p className="article__description">{item.description}</p>
+          <p className="article__source-name">{item.source?.name || item.source}</p>
+        </div>
+      </a>
       {currentUser ? (
         location.pathname === "/saved-news" ? (
           <div>
@@ -101,12 +114,6 @@ function NewsCard({
           <span className="article__tooltip">Sign in to save articles</span>
         </div>
       )}
-      <div className="article__text-container">
-        <p className="article__date">{dateFormatted}</p>
-        <p className="article__title">{item.title}</p>
-        <p className="article__description">{item.description}</p>
-        <p className="article__source-name">{item.source?.name || item.source}</p>
-      </div>
     </li>
   );
 }
