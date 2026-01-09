@@ -1,0 +1,34 @@
+.articles {
+  padding: 80px 104px;
+  background: #f5f6f7;
+}
+
+.articles__more-button {
+  display: flex;
+  justify-self: center;
+  border-radius: 50px;
+  border: none;
+  height: 56px;
+  width: 240px;
+  flex-wrap: wrap;
+  place-content: center;
+  font-size: 18px;
+  background-color: #fff;
+}
+
+.articles__more-button:hover {
+  cursor: pointer;
+  background-color: #e8e8e8;
+}
+
+@media screen and (min-width: 376px) and (max-width: 767px) {
+  .articles__container {
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .articles__container {
+    padding: 32px 16px 24px;
+  }
+}

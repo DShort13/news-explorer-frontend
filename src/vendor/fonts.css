@@ -1,0 +1,27 @@
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 100 900;
+    src: url("./fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Roboto-Slab";
+    font-style: normal;
+    font-weight: 100 900;
+    src: url("./fonts/RobotoSlab-VariableFont_wght.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    src: url("./fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Source-Sans-3";
+    font-style: normal;
+    font-weight: 100 900;
+    src: url("./fonts/SourceSans3-VariableFont_wght.ttf") format("truetype");
+  }

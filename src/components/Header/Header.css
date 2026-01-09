@@ -1,0 +1,40 @@
+.header-search__container {
+  background-image: url(../../assets/search-background.png);
+  background-size: cover;
+}
+
+.header-search__container.black {
+  background: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__logo {
+  margin: 0;
+}
+
+.header__user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 42px;
+}
+
+.header__home {
+  margin: 0;
+}
+
+.header__saved {
+  margin: 0;
+}
+
+.header__signin {
+  padding: 12px 20px;
+  background: none;
+  border-radius: 100px;
+  width: 176px;
+  height: 48px;
+}

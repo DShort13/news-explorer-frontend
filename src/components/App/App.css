@@ -1,0 +1,39 @@
+.page {
+  font-family: "Roboto", Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.page__content {
+  height: 100%;
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000000s ease-in-out 0s;
+}
+
+@media (max-width: 375px) {
+  .page {
+    max-width: 375px;
+  }
+
+  .page__content {
+    padding: 0;
+  }
+}

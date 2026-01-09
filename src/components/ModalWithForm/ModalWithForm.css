@@ -1,0 +1,241 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0000004d;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.modal_opened {
+  display: flex;
+}
+
+.modal__content {
+  max-width: 430px;
+  max-height: 458px;
+  background-color: white;
+  position: relative;
+  border-radius: 16px;
+  padding: 34px 36px 28px;
+}
+
+.modal__close {
+  background-image: url(../../assets/close.svg);
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  position: absolute;
+  top: -45px;
+  border: none;
+  right: -45px;
+  background-color: transparent;
+}
+
+.modal__close:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.modal__title {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 28px;
+  color: #1a1b22;
+  margin: 0 0 22px 0;
+}
+
+.modal__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal__label {
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #2f71e5;
+    padding-bottom: 24px;
+  }
+
+  .modal__input {
+    width: 358px;
+    height: 33px;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px 0 4px;
+    color: #000;
+  }
+
+  .modal__input::placeholder {
+    color: #b6bcbf;
+  }
+
+  .modal__error {
+    color: #ff0000;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .modal__submit {
+    margin: 8px 0 16px;
+    width: 358px;
+    height: 64px;
+    border-radius: 100px;
+    border: none;
+    padding: 0;
+    color: #fff;
+    background-color: #2f71e5;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .modal__submit:hover {
+    opacity: 0.9;
+  }
+
+  .modal__submit-disabled {
+    color: #b6bcbf;
+    background-color: #e6e8eb;
+    cursor: not-allowed;
+  }
+
+  .modal__alternate-text {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    color: #000;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .modal__alternate-link {
+    color: #2f71e5;
+  }
+
+  .modal__alternate-link:hover {
+    text-decoration: underline;
+  }
+
+@media screen and (max-width: 375px) {
+  .modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .modal__content {
+    width: 100%;
+    max-width: 430px;
+    max-height: 480px;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 18px 18px 0 0;
+    padding: 16px 20px 45px;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    align-self: flex-end;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: -40px;
+    right: 16px;
+    background: url(../../assets/close.svg) no-repeat center;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .modal__title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    margin-top: 0;
+  }
+
+  .modal__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal__label {
+    font-size: 12px;
+    color: #2f71e5;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal__input {
+    font-size: 14px;
+    padding: 8px 0 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    outline: none;
+    width: auto;
+  }
+
+  .modal__submit {
+    height: 64px;
+    border-radius: 100px;
+    border: none;
+    background-color: #2f71e5;
+    color: white;
+    font-size: 16px;
+    margin: 8px 0 16px;
+    cursor: pointer;
+    width: auto;
+  }
+
+  .modal__submit-disabled {
+    color: #b6bcbf;
+    background-color: #e6e8eb;
+    cursor: not-allowed;
+  }
+
+  .modal__error {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .modal__switch {
+    font-size: 14px;
+    text-align: center;
+    color: #000;
+  }
+
+  .modal__alternate-text {
+    border: none;
+    background: none;
+  }
+
+  .modal__alternate-link {
+    color: #2f71e5;
+    cursor: pointer;
+  }
+}

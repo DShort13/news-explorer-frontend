@@ -1,0 +1,36 @@
+.saved__info {
+  padding: 40px 104px 56px;
+}
+
+.saved__info-keyword_title {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  color: #1a1b2250;
+}
+
+.saved__info-keyword_number {
+  font-family: "Roboto-Slab", Arial, sans-serif;
+  font-size: 40px;
+  max-width: 530px;
+}
+
+.saved__info-keyword_list {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+}
+
+.saved__info-keywords {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 376px) and (max-width: 768px) {
+  .saved__info {
+    padding: 40px 40px 56px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .saved__info {
+    padding: 8px 16px 32px;
+  }
+}
